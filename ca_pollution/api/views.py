@@ -23,7 +23,7 @@ from rest_framework import generics
 
 class TriReleaseList(APIView):
     def get(self, request):
-        tri_releases = TriRelease.objects.all()
+        tri_releases = TriRelease.objects.all()[:20]
         #tri_releases = TriRelease.objects.all().select_related()[:30]
         serializer = serialize('geojson', tri_releases, geometry_field='geom', fields=('year', 'f', 'frs_id', 'f_lat', 'f_long', 'industry', 'pollutant', 'cas_id', 'release', 'unit', 'clean_air', 'metal', 'carcinogen', 'medium',))
         new_tri_json = json.loads(serializer)
@@ -49,6 +49,6 @@ class TriReleaseList(APIView):
         #         new_tri_json['features'][i]['properties']['popupContent'] = "None"
         #         #new_tri_json['features'][i]['properties']['tri_facility'] = "None"
         #     i = i+1
-        with open("C:\\Users\\MeganLuisa\\web_gis\\LeafletSlider\\examples\\test.json", 'w') as outfile:
-             json.dump(new_tri_json, outfile, indent =4)
+        # with open("C:\\Users\\MeganLuisa\\web_gis\\LeafletSlider\\examples\\test.json", 'w') as outfile:
+        #      json.dump(new_tri_json, outfile, indent =4)
         return Response(new_tri_json)
