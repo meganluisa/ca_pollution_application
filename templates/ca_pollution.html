@@ -12,6 +12,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="./main.js"></script>
         <link rel="stylesheet" href="dist/css/bootstrap-multiselect.css" type="text/css"/>
     </head>
     
@@ -20,8 +21,12 @@
         <header id="header">
             <h1>California Pollution App</h1>
         </header>
-        <div id="map" style="width: 80%; height: 525px"></div>
-        <div style="background-color: burlywood; border-radius: 5px;">
+        <div id="map"></div>
+        
+        <div id="sidenavopen" href="javascript:void(0)" onclick="openNav()">&#9776;</div>
+        
+        <div id="sidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <select class="inputs" id="event-types" multiple="multiple">
               <optgroup label="Industry">
               <option type="checkbox" class="event-type" name="plastics-and-rubber" value="Plastics and Rubber" selected="selected">Plastics and Rubber</option>
@@ -62,7 +67,7 @@
                   $('#event-types').multiselect({
                     enableFiltering: true,
                     includeSelectAllOption: true,
-                    buttonWidth: "300px",
+                    buttonWidth: "250px",
                     maxHeight: "100px",
                     enableCollapsibleOptGroups: true,
                     enableClickableOptGroups: true

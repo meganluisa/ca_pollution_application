@@ -3,6 +3,8 @@
     padding: 0;
 }
 
+/* Prob get rid of all this
+
 header {
     background-image: url("https://images.unsplash.com/photo-1519852476561-ec618b0183ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1476&q=80");
     background-position: center top;
@@ -14,9 +16,8 @@ header {
     
 }
 
-
 .main {
-    width: 60%;
+    width: 0%;
     background-color: rgb(180, 182, 185);
     margin: 1% auto;
     position: relative;
@@ -24,6 +25,89 @@ header {
     border-radius: 2px;
     border-width: medium;
     border-color: black;
+}
+*/
+
+html, body {
+    height: 100%;
+}
+
+#map {
+    height: 100%;
+    background: #000;
+}
+
+header {
+    background-color: rgb(1,1,1);
+    font-size: 1.1em;
+    color: rgb(255,255,255);
+    height: 60px;
+    padding: 5px;
+    text-align: left;
+}
+
+
+.main {
+    background-color: rgba(1,1,1,.2);
+    border: none;
+    border-radius: 5px;
+    bottom: 20px;
+    left: 20px;
+    padding: 5px;
+    position: absolute;
+    transition: 0.5s;
+    width: 40%;
+}
+
+#sidenavopen {
+    background-color: rgb(255,255,255);
+    border-radius: 5px;
+    color: rgb(0,0,0);
+    font-size: 1.4em;
+    height: 40px;
+    margin-left: 27px;
+    padding: 3px 10px;
+    position: absolute;
+    top: 70px;
+    width: 40px;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.btn {
+    color: rgb(255,255,255) !important;
+}
+
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1001; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #111; /* Black*/
+   /* overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  }
+
+.multiselect-container .dropdown-menu{
+    left: 5px !important;
+    top: 40px !important;
+} 
+
+.leaflet-left .leaflet-control {
+    margin-left: 35px !important;
+}
+
+.leaflet-top .leaflet-control {
+    margin-top: 60px !important;
 }
 
 /* #event-types.inputs{
