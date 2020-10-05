@@ -76,7 +76,7 @@
             </script>
         
             <div class="main" class="inputs" id="years">
-              <input type="range" class="year" min="1987" max="2020" value=1987 id="slider">
+              <input type="range" class="year" min="1987" max="2020" value=2007 id="slider">
               <div id="selector">
                 <div class="SelectBtn"></div>
                 <div id="SelectValue"></div>
@@ -88,7 +88,7 @@
               var selector = document.getElementById("selector");
               
               SelectValue.innerHTML = slider.value;
-              console.log(slider.value);
+        
               slider.oninput = function() {
                 SelectValue.innerHTML = this.value;
                 selector.style.left = this.value;
@@ -128,17 +128,13 @@
                   eventTypes: []
                 }
                 for (let input of document.querySelectorAll('.event-type')) {
-                  console.log(input);
-                  console.log(input.selected);
-                  console.log(input.value);
                   if(input.selected) {
                     switch (input.className) {
                       case 'event-type': checkboxStates.eventTypes.push(input.value); break
                     }
                   }
                 }
-                for (let input of document.querySelectorAll('.year')) {
-                  console.log(input.value);
+                for (let input of document.querySelectorAll('input')) {
                   if (input.className === "year") {
                     checkboxStates.years.push(input.value);
                   }
@@ -223,14 +219,14 @@
               }).addTo(myMap);
         
               // Get JSON from web request
-                $.getJSON('http://localhost:8000/ca_pollution/api/tri_releases/', function(json) {
+              $.getJSON('http://localhost:8000/ca_pollution/api/tri_releases/', function(json) {
               //  Update geojson layer with data
                 console.log(json);
                 geojsonLayer.addData(json); 
 
-             // Get JSON from your test file
-            //  $.getJSON('tri_release.json', function(json) {
-               // Update geojson layer with data
+              // Get JSON from your test file
+            //   $.getJSON('tri_release.json', function(json) {
+                // Update geojson layer with data
                 // console.log(json);
                 // geojsonLayer.addData(json); 
         
@@ -303,8 +299,6 @@
                 }
               }).addTo(myMap);
         
-
-
               // Get JSON from web request
               $.getJSON('http://localhost:8000/ca_pollution/api/dmr_releases/', function(json) {
               //  Update geojson layer with data
