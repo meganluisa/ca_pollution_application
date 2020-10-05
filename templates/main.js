@@ -12,6 +12,7 @@ function openNav() {
     document.getElementById("years").style.left = "20px";
 }
 
+/* filter the nav bar*/
 $(document).ready(function () {
     $("#filter").keyup(function () {
         var filter = $(this).val(),
@@ -30,17 +31,7 @@ $(document).ready(function () {
         });
     });
 
-    $('.level2 a').click(function(event){
-        event.preventDefault();
-        var checkBox = $(this).parent().find(':checkbox');
-        if(checkBox.prop("checked")){
-            checkBox.prop("checked", false);    
-        } else {
-            checkBox.prop("checked", true);
-        }
-        // checkBox.prop("checked", !checkBox.prop("checked"));
-    });
-
+/* expand and collapse the nav bar */
     $( "li.expander" ).click(function() {
       $( this ).next().toggleClass( "condense" );
       $( this ).find("span").toggleClass( "ui-icon-plus" );
