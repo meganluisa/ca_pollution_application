@@ -46,7 +46,7 @@ header {
     position: fixed;
     text-align: left;
     width: 100%;
-    z-index: 2;
+    z-index: 1002;
 }
 
 
@@ -55,24 +55,33 @@ header {
     border: none;
     border-radius: 5px;
     bottom: 20px;
-    left: 270px;
+    left: 290px;
     padding: 5px;
     position: absolute;
     transition: 0.5s;
     width: 40%;
 }
 
-#sidenavopen {
+.sidenavbutton{
     background-color: rgb(255,255,255);
     border-radius: 5px;
     color: rgb(0,0,0);
     font-size: 1.4em;
     height: 40px;
-    margin-left: 27px;
-    padding: 3px 10px;
+    line-height: 40px;
     position: absolute;
+    text-align: center;
+    transition: 0.5s;
     top: 70px;
     width: 40px;
+}
+
+#sidenavopen {
+    margin-left: 27px;
+}
+
+#sidenavclose {
+    left: 280px;
 }
 
 .sidenav .closebtn {
@@ -83,22 +92,60 @@ header {
     margin-left: 50px;
 }
 
+.sidenav{
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.sidenav #filter {
+    padding: 5px; 
+    margin: 5px;
+    width: 240px;
+}
+
+.sidenav a {
+    color: rgb(255,255,255);
+}
+
+.sidenav a {
+    padding: 5px;
+}
+
+.sidenav li {
+    padding: 5px;
+    color: rgb(255,255,255);
+}
+
+.sidenav input {
+    margin-right: 10px;
+}
+
+.sidenav ul.condense {
+    display: none;
+}
+
 .btn {
     color: rgb(255,255,255) !important;
 }
 
 .sidenav {
     height: 100%; /* 100% Full-height */
-    width: 250px; /* 0 width - change this with JavaScript */
+    width: 270px; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1001; /* Stay on top */
-    top: 60px; /* Stay at the top */
+    top: 0px; /* Stay at the top */
     left: 0;
     background-color: #111; /* Black*/
    /* overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 0px; /* Place content 60px from the top */
+    padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
   }
+
+.listtitle span{
+    background-color: rgb(255,255,255);
+    float: right;
+    margin-top:5px;
+}
 
 .multiselect-container .dropdown-menu{
     left: 5px !important;
@@ -111,6 +158,20 @@ header {
 
 .leaflet-top .leaflet-control {
     margin-top: 120px !important;
+}
+
+.leaflet-popup-content{
+    line-height: 25px !important; 
+}
+
+.leaflet-popup-content .popuptitle {
+    font-weight: bold;
+    float: left;
+    min-width: 90px;
+}
+
+.leaflet-popup-content .popupdata{
+    margin-left: 95px; 
 }
 
 /* #event-types.inputs{

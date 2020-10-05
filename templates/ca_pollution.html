@@ -11,7 +11,9 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
         <script src="./main.js"></script>
         <link rel="stylesheet" href="dist/css/bootstrap-multiselect.css" type="text/css"/>
     </head>
@@ -23,45 +25,52 @@
         </header>
         <div id="map"></div>
         
-        <div id="sidenavopen" href="javascript:void(0)" onclick="openNav()">&#9776;</div>
-        
+        <div id="sidenavopen" class="sidenavbutton" href="javascript:void(0)" onclick="openNav()">&#9776;</div>
+        <div id="sidenavclose" class="sidenavbutton closebtn" href="javascript:void(0)" onclick="closeNav()">&times;</div>
+            
         <div id="sidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <select class="inputs" id="event-types" multiple="multiple">
-              <optgroup label="Industry">
-              <option type="checkbox" class="event-type" name="plastics-and-rubber" value="Plastics and Rubber" selected="selected">Plastics and Rubber</option>
-              <option type="checkbox" class="event-type" name="furniture" value="Furniture" selected="selected">Furniture</option>
-              <option type="checkbox" class="event-type" name="fabricated-metals" value="Fabricated Metals" selected="selected">Fabricated Metals</option>
-              <option type="checkbox" class="event-type" name="electric-utilities" value="Electric Utilities" selected="selected">Electric Utilities</option>
-              <option type="checkbox" class="event-type" name="nonmetallic-mineral-product" value="Nonmetallic Mineral Product" selected="selected">Nonmetallic Mineral Product</option>
-              <option type="checkbox" class="event-type" name="textiles" value="Textiles" selected="selected">Textiles</option>
-              <option type="checkbox" class="event-type" name="metal-mining" value="Metal Mining" selected="selected">Metal Mining</option>
-              <option type="checkbox" class="event-type" name="tobacco" value="Tobacco" selected="selected">Tobacco</option>
-              <option type="checkbox" class="event-type" name="machinery" value="Machinery" selected="selected">Machinery</option>
-              <option type="checkbox" class="event-type" name="leather" value="Leather" selected="selected">Leather</option>
-              <option type="checkbox" class="event-type" name="paper" value="Paper" selected="selected">Paper</option>
-              <option type="checkbox" class="event-type" name="publishing" value="Publishing" selected="selected">Publishing</option>
-              <option type="checkbox" class="event-type" name="printing" value="Printing" selected="selected">Printing</option>
-              <option type="checkbox" class="event-type" name="electrical-equipment" value="Electrical Equipment" selected="selected">Electrical Equipment</option>
-              <option type="checkbox" class="event-type" name="chemicals" value="Chemicals" selected="selected">Chemicals</option>
-              <option type="checkbox" class="event-type" name="petroleum-bulk-terminals" value="Petroleum Bulk Terminals" selected="selected">Petroleum Bulk Terminals</option>
-              <option type="checkbox" class="event-type" name="beverages" value="Beverages" selected="selected">Beverages</option>
-              <option type="checkbox" class="event-type" name="hazardous-waste" value="Hazardous Waste" selected="selected">Hazardous Waste</option>
-              <option type="checkbox" class="event-type" name="wood-products" value="Wood Products" selected="selected">Wood Products</option>
-              <option type="checkbox" class="event-type" name="textile-product" value="Textile Product" selected="selected">Textile Product</option>
-              <option type="checkbox" class="event-type" name="petroleum" value="Petroleum" selected="selected">Petroluem</option>
-              <option type="checkbox" class="event-type" name="computers-and-electronic-products" value="Computers and Electronic Products" selected="selected">Computers and Electronic Products</option>
-              <option type="checkbox" class="event-type" name="apparel" value="Apparel" selected="selected">Apparel</option>
-              <option type="checkbox" class="event-type" name="food" value="Food" selected="selected">Food</option>
-              <option type="checkbox" class="event-type" name="chemical-wholesalers" value="Chemical Wholesalers" selected="selected">Chemical Wholesalers</option>
-              <option type="checkbox" class="event-type" name="transportation-equipment" value="Transportation Equipment" selected="selected">Transportation Equipment</option>
-              <option type="checkbox" class="event-type" name="primary-metals" value="Primary Metals" selected="selected">Primary Metals</option>
-              <option type="checkbox" class="event-type" name="miscellaneous-manufacturing" value="Miscellaneous Manufacturing" selected="selected">Miscellaneous Manufacturing</option>
-              <option type="checkbox" class="event-type" name="other" value="Other" selected="selected">Other</option>
-            </optgroup>
-            </select>
+          <input id="filter" type="text" placeholder="Search.."/>
+            <ul class="level1">
+              <li class="listtitle expander">Industry<span class="ui-icon ui-icon-minus" style="display:inline-block"></span></li>
+                <ul class="level2" class="searchable">
+                  <li><input type="checkbox" class="event-type" name="plastics-and-rubber" value="Plastics and Rubber" checked="true">Plastics and Rubber</input></li>
+                  <li><input type="checkbox" class="event-type" name="furniture" value="Furniture"  checked="true">Furniture</input></li>
+                  <li><input type="checkbox" class="event-type" name="fabricated-metals" value="Fabricated Metals" checked="true">Fabricated Metals</input></li>
+                  <li><input type="checkbox" class="event-type" name="electric-utilities" value="Electric Utilities"  checked="true">Electric Utilities</input></li>
+                  <li><input type="checkbox" class="event-type" name="nonmetallic-mineral-product" value="Nonmetallic Mineral Product" checked="true">Nonmetallic Mineral Product</input></li>
+                  <li><input type="checkbox" class="event-type" name="textiles" value="Textiles" checked="true">Textiles</input></li>
+                  <li><input type="checkbox" class="event-type" name="metal-mining" value="Metal Mining" checked="true">Metal Mining</input></li>
+                  <li><input type="checkbox" class="event-type" name="tobacco" value="Tobacco" checked="true">Tobacco</input></li>
+                  <li><input type="checkbox" class="event-type" name="machinery" value="Machinery" checked="true">Machinery</input></li>
+                  <li><input type="checkbox" class="event-type" name="leather" value="Leather" checked="true">Leather</input></li>
+                  <li><input type="checkbox" class="event-type" name="paper" value="Paper" checked="true">Paper</input></li>
+                  <li><input type="checkbox" class="event-type" name="publishing" value="Publishing" checked="true">Publishing</input></li>
+                  <li><input type="checkbox" class="event-type" name="printing" value="Printing" checked="true">Printing</input></li>
+                  <li><input type="checkbox" class="event-type" name="electrical-equipment" value="Electrical Equipment" checked="true">Electrical Equipment</input></li>
+                  <li><input type="checkbox" class="event-type" name="chemicals" value="Chemicals" checked="true">Chemicals</input></li>
+                  <li><input type="checkbox" class="event-type" name="petroleum-bulk-terminals" value="Petroleum Bulk Terminals" checked="true">Petroleum Bulk Terminals</input></li>
+                  <li><input type="checkbox" class="event-type" name="beverages" value="Beverages" checked="true">Beverages</input></li>
+                  <li><input type="checkbox" class="event-type" name="hazardous-waste" value="Hazardous Waste" checked="true">Hazardous Waste</input></li>
+                  <li><input type="checkbox" class="event-type" name="wood-products" value="Wood Products" checked="true">Wood Products</input></li>
+                  <li><input type="checkbox" class="event-type" name="textile-product" value="Textile Product" checked="true">Textile Product</input></li>
+                  <li><input type="checkbox" class="event-type" name="petroleum" value="Petroleum" checked="true">Petroluem</input></li>
+                  <li><input type="checkbox" class="event-type" name="computers-and-electronic-products" value="Computers and Electronic Products" checked="true">Computers and Electronic Products</input></li>
+                  <li><input type="checkbox" class="event-type" name="apparel" value="Apparel" checked="true">Apparel</input></li>
+                  <li><input type="checkbox" class="event-type" name="food" value="Food" checked="true">Food</input></li>
+                  <li><input type="checkbox" class="event-type" name="chemical-wholesalers" value="Chemical Wholesalers" checked="true">Chemical Wholesalers</input></li>
+                  <li><input type="checkbox" class="event-type" name="transportation-equipment" value="Transportation Equipment" checked="true">Transportation Equipment</input></li>
+                  <li><input type="checkbox" class="event-type" name="primary-metals" value="Primary Metals" checked="true">Primary Metals</input></input>
+                  <li><input type="checkbox" class="event-type" name="miscellaneous-manufacturing" value="Miscellaneous Manufacturing" checked="true">Miscellaneous Manufacturing</input></li>
+                  <li><input type="checkbox" class="event-type" name="other" value="Other" checked="true">Other</input></li>
+                </ul>
+              <li class="listtitle expander">Chemical<span class="ui-icon ui-icon-minus" style="display:inline-block"></span></li>
+                  <ul class="level2" class="searchable">
+                    <li><input type="checkbox" class="event-type" name="oxygen" value="Oxygen" checked="true">Oxygen</input></li>
+                    <li><input type="checkbox" class="event-type" name="helium" value="Helium" checked="true">Helium</input></li>
+                </ul>
+            </ul>
           </div>
-            <!-- Initialize the plugin: -->
+            <!-- Initialize the plugin: 
             <script type="text/javascript">
               $(document).ready(function() {
                   $('#event-types').multiselect({
@@ -73,6 +82,7 @@
                     enableClickableOptGroups: true
                   });
              });
+             -->
             </script>
         
             <div class="main" class="inputs" id="years">
@@ -128,7 +138,7 @@
                   eventTypes: []
                 }
                 for (let input of document.querySelectorAll('.event-type')) {
-                  if(input.selected) {
+                  if(input.checked) {
                     switch (input.className) {
                       case 'event-type': checkboxStates.eventTypes.push(input.value); break
                     }
@@ -160,7 +170,7 @@
                             var facility = feature.properties.f;
                             var facility_id = feature.properties.frs_id;
                             var industry = feature.properties.industry;
-                            layer.bindPopup("<strong>YEAR: </strong>" + year + "<br /><strong> POLLUTANT: </strong>" + pollutant + "<br /><strong> RELEASE: </strong>" + release + " " + unit + "<br /><strong> FACILITY: </strong>" + facility + "<br /><strong> FACILITY ID: </strong>" + facility_id + "<br /><strong> INDUSTRY: </strong>" + industry, { maxWidth: 300, maxHeight: 200, autoPan: true, closeButton: true });
+                            layer.bindPopup("<div class='popuptitle'>YEAR: </div><div class='popupdata'>" + year + "</div><div class='popuptitle'>POLLUTANT: </div><div class='popupdata'>" + pollutant + "</div><div class='popuptitle'>RELEASE:</div><div class='popupdata'>" + release + " " + unit + "</div><div class='popuptitle'>FACILITY:</div><div class='popupdata'>" + facility + "</div><div class='popuptitle'>FACILITY ID:</div><div class='popupdata'>" + facility_id + "</div><div class='popuptitle'>INDUSTRY:</div><div class='popupdata'>" + industry + "</div>", { maxWidth: 500, maxHeight: 400, autoPan: true, closeButton: true });
                   }
                 },
                 pointToLayer: function (feature, latlng) {
