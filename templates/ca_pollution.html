@@ -12,6 +12,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="./main.js"></script>
         <link rel="stylesheet" href="dist/css/bootstrap-multiselect.css" type="text/css"/>
     </head>
     
@@ -20,8 +21,12 @@
         <header id="header">
             <h1>California Pollution App</h1>
         </header>
-        <div id="map" style="width: 75%; height: 525px"></div>
-        <div style="background-color: burlywood; border-radius: 5px;">
+        <div id="map"></div>
+
+        <div id="sidenavopen" href="javascript:void(0)" onclick="openNav()">&#9776;</div>
+
+        <div id="sidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <select class="inputs" id="event-types" multiple="multiple">
               <optgroup label="Industry">
               <option type="checkbox" class="event-type" name="plastics-and-rubber" value="Plastics and Rubber" selected="selected">Plastics and Rubber</option>
@@ -62,7 +67,7 @@
                   $('#event-types').multiselect({
                     enableFiltering: true,
                     includeSelectAllOption: true,
-                    buttonWidth: "300px",
+                    buttonWidth: "250px",
                     maxHeight: "100px",
                     enableCollapsibleOptGroups: true,
                     enableClickableOptGroups: true
@@ -71,7 +76,7 @@
             </script>
         
             <div class="main" class="inputs" id="years">
-              <input type="range" class="year" min="1987" max="2020" value=1987 id="slider">
+              <input type="range" class="year" min="1987" max="2020" value=2007 id="slider">
               <div id="selector">
                 <div class="SelectBtn"></div>
                 <div id="SelectValue"></div>
@@ -109,7 +114,7 @@
                 center: [37.41907305286242, -117.61962890625001],
                 zoom: 4,
                 minZoom: 6,
-                maxZoom: 12,
+                maxZoom: 17,
                 layers: [terrain, streets]
                 });
         
@@ -149,13 +154,35 @@
                 onEachFeature: function(feature, layer) {
                   if (feature.properties) {
                     var year = feature.properties.year.substr(0, 4);
-                            var pollutant = feature.properties.pollutant;
-                            var release = feature.properties.release;
-                            var unit = feature.properties.unit;
-                            var facility = feature.properties.f;
-                            var facility_id = feature.properties.frs_id;
-                            var industry = feature.properties.industry;
-                            layer.bindPopup("<strong>YEAR: </strong>" + year + "<br /><strong> POLLUTANT: </strong>" + pollutant + "<br /><strong> RELEASE: </strong>" + release + " " + unit + "<br /><strong> FACILITY: </strong>" + facility + "<br /><strong> FACILITY ID: </strong>" + facility_id + "<br /><strong> INDUSTRY: </strong>" + industry, { maxWidth: 300, maxHeight: 200, autoPan: true, closeButton: true });
+                    var pollutant = feature.properties.pollutant;
+                    var cas_id = feature.properties.cas_id;
+                    var release = feature.properties.release;
+                    var unit = feature.properties.unit;
+                    var facility = feature.properties.f__f_name;
+                    var facility_id = feature.properties.f__f_id;
+                    var industry = feature.properties.industry;
+                    var facility_address = feature.properties.f__address;
+                    var facility_city = feature.properties.f__city;
+                    var facility_county = feature.properties.f__county;
+                    var facility_st = feature.properties.f__st;
+                    var facility_zip = feature.properties.f__zip;
+                    var federal = feature.properties.f__federal;
+                    layer.bindPopup(
+                                "<strong>YEAR: </strong>" + year + 
+                                "<br /><strong> POLLUTANT: </strong>" + pollutant + 
+                                "<br /><strong> CAS ID: </strong>" + cas_id + 
+                                "<br /><strong> RELEASE: </strong>" + release + " " + unit + 
+                                "<br /><strong> FACILITY ID: </strong>" + facility_id + 
+                                "<br /><strong> INDUSTRY: </strong>" + industry +
+                                "<br /><strong> FACILITY: </strong>" + facility +
+                                "<br /><strong> ADDRESS: </strong>" + facility_address + ", " + facility_city + ", " + facility_county + ", " + facility_st + " " + facility_zip +
+                                "<br /><strong> FEDERAL FACILITY: </strong>" + federal,
+                                { 
+                                    maxWidth: 300, 
+                                    maxHeight: 200, 
+                                    autoPan: true, 
+                                    closeButton: true 
+                                });
                   }
                 },
                 pointToLayer: function (feature, latlng) {
@@ -192,17 +219,16 @@
               }).addTo(myMap);
         
               // Get JSON from web request
-            //   $.getJSON('http://localhost:8000/ca_pollution/api/tri_releases/', function(json) {
+              $.getJSON('http://localhost:8000/ca_pollution/api/tri_releases/', function(json) {
+              //  Update geojson layer with data
+                console.log(json);
+                geojsonLayer.addData(json); 
+
+              // Get JSON from your test file
+            //   $.getJSON('tri_release.json', function(json) {
                 // Update geojson layer with data
                 // console.log(json);
                 // geojsonLayer.addData(json); 
-
-
-              // Get JSON from your test file
-              $.getJSON('tri_release.json', function(json) {
-                // Update geojson layer with data
-                console.log(json);
-                geojsonLayer.addData(json); 
         
                 // Listen to 'change' event of all inputs
                 for (let input of document.querySelectorAll('input')) {
@@ -213,6 +239,89 @@
                   }
                 }
               });
+            
+
+
+
+
+              // Define geojson layer (without any data yet)
+              var dmrGeojsonLayer = L.geoJson(null, {
+                filter: function(feature) {
+                  var isYearChecked = checkboxStates.years.includes(feature.properties.year.substr(0, 4));
+                  console.log(isYearChecked);
+                  return isYearChecked;  
+                },
+                onEachFeature: function(feature, layer) {
+                  if (feature.properties) {
+                    var year = feature.properties.year.substr(0, 4);
+                    var pollutant = feature.properties.pollutant;
+                    var cas_id = feature.properties.cas_id;
+                    var total_lbs = feature.properties.total_lbs.substr(0, 5);
+                    var avg_daily_fl = feature.properties.avg_daily_fl;
+                    var watershed = feature.properties.watershed;
+                    var facility = feature.properties.permit_num__f_name;
+                    var facility_id = feature.properties.permit_num__permit_num;
+                    var facility_city = feature.properties.permit_num__city;
+                    var facility_county = feature.properties.permit_num__county;
+                    var facility_st = feature.properties.permit_num__st;
+                    var industry = feature.properties.permit_num__sic_code;
+                    layer.bindPopup(
+                                "<strong>YEAR: </strong>" + year + 
+                                "<br /><strong> POLLUTANT: </strong>" + pollutant + 
+                                "<br /><strong> CAS ID: </strong>" + cas_id + 
+                                "<br /><strong> RELEASE: </strong>" + total_lbs + " " + "Pounds" + 
+                                "<br /><strong> AVG DAILY FLOW: </strong>" + avg_daily_fl + 
+                                "<br /><strong> WATERSHED: </strong>" + watershed + 
+                                "<br /><strong> FACILITY: </strong>" + facility +
+                                "<br /><strong> FACILITY ID: </strong>" + facility_id + 
+                                "<br /><strong> INDUSTRY CODE: </strong>" + industry +
+                                "<br /><strong> ADDRESS: </strong>" + facility_city + ", " + facility_county + ", " + facility_st,
+                                { 
+                                    maxWidth: 300, 
+                                    maxHeight: 200, 
+                                    autoPan: true, 
+                                    closeButton: true 
+                                });
+                  }
+                },
+                pointToLayer: function (feature, latlng) {
+                  if (feature.properties) {
+                  var geojsonMarkerOptions = {
+                  radius: 3,
+                  fillColor: "#e1118e",
+                  color: "#e1118e",
+                  weight: 1,
+                  opacity: 1,
+                  fillOpacity: 0.8
+                  };
+                };
+                  return L.circleMarker(latlng, geojsonMarkerOptions);
+                }
+              }).addTo(myMap);
+        
+              // Get JSON from web request
+              $.getJSON('http://localhost:8000/ca_pollution/api/dmr_releases/', function(json) {
+              //  Update geojson layer with data
+                console.log(json);
+                dmrGeojsonLayer.addData(json); 
+
+              // Get JSON from your test file
+            //   $.getJSON('dmr_release.json', function(json) {
+                // Update geojson layer with data
+                // console.log(json);
+                // dmrGeojsonLayer.addData(json); 
+        
+                // Listen to 'change' event of all inputs
+                for (let input of document.querySelectorAll('input')) {
+                  input.onchange = (e) => {
+                    console.log(input);
+                    dmrGeojsonLayer.clearLayers()
+                    updateCheckboxStates();
+                    dmrGeojsonLayer.addData(json);   
+                  }
+                }
+              });         
+            
             </script>
         
         

@@ -35,7 +35,7 @@ class TriReleaseList(APIView):
     def get(self, request):
         serializers = CustomSerializer()
         tri_releases = TriRelease.objects.all()[:1000]
-        data = serializers.serialize(tri_releases, geometry_field='geom', fields=('year', 'frs_id', 'f_lat', 'f_long', 'industry', 'pollutant', 'cas_id', 'release', 'unit', 'clean_air', 'metal', 'carcinogen', 'medium', 'f__f_name', 'f__address', 'f__city', 'f__county', 'f__st', 'f__zip', 'f__federal'))
+        data = serializers.serialize(tri_releases, geometry_field='geom', fields=('year', 'frs_id', 'f_lat', 'f_long', 'industry', 'pollutant', 'cas_id', 'release', 'unit', 'clean_air', 'metal', 'carcinogen', 'medium', 'f__f_name', 'f__f_id', 'f__address', 'f__city', 'f__county', 'f__st', 'f__zip', 'f__federal'))
         new_tri_json = json.loads(data)
         return Response(new_tri_json)
 
@@ -43,7 +43,7 @@ class TriReleaseList(APIView):
 class DmrReleaseList(APIView):
   def get(self, request):
     serializers = CustomSerializer()
-    dmr_releases = DmrRelease.objects.all()[:20]
-    data = serializers.serialize(dmr_releases, geometry_field='geom', fields=('permit_num__f_name', 'geom', 'watershed', 'pollutant'))
+    dmr_releases = DmrRelease.objects.all()[:1000]
+    data = serializers.serialize(dmr_releases, geometry_field='geom', fields=('year', 'f_lat', 'f_long', 'pollutant', 'cas_id', 'total_lbs', 'twpe', 'avg_daily_fl', 'geom', 'watershed', 'permit_num__f_name', 'permit_num__permit_num', 'permit_num__city', 'permit_num__county', 'permit_num__st', 'permit_num__sic_code'))
     new_dmr_json = json.loads(data)
     return Response(new_dmr_json)
