@@ -1,1 +1,1 @@
-web: gunicorn thesis_project.wsgi --log-file -
+web: gunicorn thesis_project.wsgi
