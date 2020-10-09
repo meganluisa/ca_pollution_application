@@ -76,7 +76,7 @@ TEMPLATES = [
         },
     },
 ]
-# For Heroku I think
+# For Heroku I think...
 WSGI_APPLICATION = 'thesis_project.wsgi.application'
 
 
