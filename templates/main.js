@@ -12,6 +12,7 @@ function openNav() {
     document.getElementById("years").style.left = "20px";
 }
 
+
 /* filter the nav bar*/
 $(document).ready(function () {
     $("#filter").keyup(function () {

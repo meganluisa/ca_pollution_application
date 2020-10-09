@@ -231,6 +231,19 @@ header {
     bottom: -14px;
     left: 0;
 }
+
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
 /* .SelectBtn{
     height: 48px;
     width: 48px;
