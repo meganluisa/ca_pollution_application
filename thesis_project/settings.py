@@ -86,12 +86,12 @@ WSGI_APPLICATION = 'thesis_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'thesis_project',
-        'USER': 'name',
-        'PASSWORD': '',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'thesis_db',
+        'USER': 'postgres',
+        'PASSWORD': 'R0cks4J0cks!',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432'
     }
 }
 
