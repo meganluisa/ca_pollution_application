@@ -1,0 +1,8 @@
+*.pyc
+db.sqlite3
+thesis-env
+__pycache__
+local_settings.py
+node_modules
+templates/tri_data.json
+ca_pollution/__pycache__/

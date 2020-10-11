@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Prob get rid of all this
+
+header {
+    background-image: url("https://images.unsplash.com/photo-1519852476561-ec618b0183ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1476&q=80");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    line-height: 1.5;
+    padding: 2vw 2em;
+    text-align: center;
+    
+}
+
+.main {
+    width: 0%;
+    background-color: rgb(180, 182, 185);
+    margin: 1% auto;
+    position: relative;
+    border-style: solid;
+    border-radius: 2px;
+    border-width: medium;
+    border-color: black;
+}
+*/
+
+html, body {
+    height: 100%;
+}
+
+#map {
+    height: 100%;
+    background: #000;
+}
+
+header {
+    background-color: rgb(1,1,1);
+    font-size: 1.1em;
+    color: rgb(255,255,255);
+    height: 60px;
+    padding: 5px;
+    position: fixed;
+    text-align: left;
+    width: 100%;
+    z-index: 1002;
+}
+
+
+.main {
+    background-color: rgba(1,1,1,.2);
+    border: none;
+    border-radius: 5px;
+    bottom: 20px;
+    left: 290px;
+    padding: 5px;
+    position: absolute;
+    transition: 0.5s;
+    width: 40%;
+}
+
+.sidenavbutton{
+    background-color: rgb(255,255,255);
+    border-radius: 5px;
+    color: rgb(0,0,0);
+    font-size: 1.4em;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    text-align: center;
+    transition: 0.5s;
+    top: 70px;
+    width: 40px;
+}
+
+#sidenavopen {
+    margin-left: 27px;
+}
+
+#sidenavclose {
+    left: 280px;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 40px;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.sidenav{
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.sidenav #filter {
+    padding: 5px; 
+    margin: 5px;
+    width: 240px;
+}
+
+.sidenav a {
+    color: rgb(255,255,255);
+}
+
+.sidenav a {
+    padding: 5px;
+}
+
+.sidenav li {
+    padding: 5px;
+    color: rgb(255,255,255);
+}
+
+.sidenav input {
+    margin-right: 10px;
+}
+
+.sidenav ul.condense {
+    display: none;
+}
+
+.btn {
+    color: rgb(255,255,255) !important;
+}
+
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 270px; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1001; /* Stay on top */
+    top: 0px; /* Stay at the top */
+    left: 0;
+    background-color: #111; /* Black*/
+   /* overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  }
+
+.listtitle span{
+    background-color: rgb(255,255,255);
+    float: right;
+    margin-top:5px;
+}
+
+.multiselect-container .dropdown-menu{
+    left: 5px !important;
+    top: 40px !important;
+} 
+
+.leaflet-left .leaflet-control {
+    margin-left: 35px !important;
+}
+
+.leaflet-top .leaflet-control {
+    margin-top: 120px !important;
+}
+
+.leaflet-popup-content{
+    line-height: 25px !important; 
+}
+
+.leaflet-popup-content .popuptitle {
+    font-weight: bold;
+    float: left;
+    min-width: 90px;
+}
+
+.leaflet-popup-content .popupdata{
+    margin-left: 95px; 
+}
+
+/* #event-types.inputs{
+    width: 200px;
+    background-color: blanchedalmond;
+} */
+
+#slider {
+    /* -webkit-appearance: button; */
+    background: rgb(216, 213, 213);
+    width: 100%;
+    height: 7px;
+    cursor: pointer;
+    outline: none;
+    border-radius: 3px;
+    border-width: 4px;
+    border-color: black;
+}
+/* #slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 3;
+    position: relative;
+} */
+
+#selector {
+    height: 40px;
+    width: 35px;
+    position: relative;
+    bottom: -0px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+#SelectValue{
+    width: 50px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    background: rgb(42, 40, 43);
+    border-radius: 4px;
+    text-align: center;
+    color: rgb(250, 245, 255);
+    line-height: 30px;
+    font-size: 15px;
+    /* font-weight: ; */
+}
+#SelectValue::after{
+    content: '';
+    /* border-top: 17px solid #ffd200;
+    border-left: 24px solid #000;
+    border-right: 24px solid #000; */
+    position: absolute;
+    bottom: -14px;
+    left: 0;
+}
+
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
