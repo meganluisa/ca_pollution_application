@@ -157,3 +157,4 @@ django_heroku.settings(locals())
 
 GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH')
 GEOS_LIBRARY_PATH = os.environ.get('GEOS_LIBRARY_PATH')
+GEOS_LIBRARY_PATH = '/home/bob/local/lib/libgeos_c.so'
