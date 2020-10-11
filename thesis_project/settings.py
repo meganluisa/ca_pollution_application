@@ -52,7 +52,6 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -66,7 +65,9 @@ ROOT_URLCONF = 'thesis_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,11 +135,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    os.path.join(BASE_DIR, 'staticfiles'),
+    os.path.join(BASE_DIR, 'staticfiles'),
+    os.path.join(BASE_DIR, 'staticfiles'),
+
+    BASE_DIR / 'templates/',
+]
 
 django_heroku.settings(locals())
-
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# STATIC_URL = '/static/'
-
 # db_from_env = dj_database_url.config(conn_max_age=500)
 # DATABASES['default'].update(db_from_env)

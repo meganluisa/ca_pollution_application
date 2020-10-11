@@ -1,1 +1,1 @@
-web: gunicorn thesis_project.wsgi
+web: waitress-serve --listen=*:8000 thesis_project.wsgi:application
