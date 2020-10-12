@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-{% load static %}
->>>>>>> 1c451ceb85677102f5317e94842defd8a444cb4f
 
 <!DOCTYPE html>
 <html>
@@ -10,29 +6,17 @@
         <title>CA Pollution App</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-=======
-        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css"/>
->>>>>>> 1c451ceb85677102f5317e94842defd8a444cb4f
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<<<<<<< HEAD
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
         <script type="text/javascript" src="main.js"></script> 
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
       
         <script type="text/javascript" src="big.js/big.js"></script>
-=======
-        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
-        <script type="text/javascript" src="main.js"></script> 
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-        <script type="text/javascript" src="../node_modules/big.js/big.js"></script>
->>>>>>> 1c451ceb85677102f5317e94842defd8a444cb4f
         
     </head>
   
@@ -124,24 +108,14 @@
               }
             </script>
         
-<<<<<<< HEAD
             <script src="https://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
             <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-=======
-            <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
-            <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
->>>>>>> 1c451ceb85677102f5317e94842defd8a444cb4f
         
           
             <script>
               // Setup map
-<<<<<<< HEAD
               var terrain = L.tileLayer('https://tile.stamen.com/terrain/{z}/{x}/{y}.jpg'),
                   streets =  L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-=======
-              var terrain = L.tileLayer('http://tile.stamen.com/terrain/{z}/{x}/{y}.jpg'),
-                  streets =  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
->>>>>>> 1c451ceb85677102f5317e94842defd8a444cb4f
                   });
                 
               var baseMaps = {
@@ -274,11 +248,7 @@
 
 
               // Get JSON from your test file
-<<<<<<< HEAD
               $.getJSON("/staticfiles/tri_data.json", function(json) {
-=======
-              $.getJSON("tri_data.json", function(json) {
->>>>>>> 1c451ceb85677102f5317e94842defd8a444cb4f
               // Update geojson layer with data
                 console.log(json);
                 geojsonLayer.addData(json); 
@@ -328,11 +298,7 @@
     // draws it.
     function drawChart() {
       var jsonData = $.ajax({
-<<<<<<< HEAD
         url: "/staticfiles/tri_data.json",
-=======
-        url: "tri_data.json",
->>>>>>> 1c451ceb85677102f5317e94842defd8a444cb4f
         dataType: "json",
         //async: false,
         success: function (jsonData){
@@ -387,11 +353,6 @@
 
   <div id="chart_div"></div>
   
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> 1c451ceb85677102f5317e94842defd8a444cb4f
 
   </body>
 </html>
