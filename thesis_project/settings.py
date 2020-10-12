@@ -27,11 +27,8 @@ SECRET_KEY = '%d6lv2ww(p&l-i+dgw=zdlw@3@8l^sa2x0%@h(c*^s=&xcf&p$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
-=======
+
 ALLOWED_HOSTS = []
->>>>>>> 1c451ceb85677102f5317e94842defd8a444cb4f
 
 CORS_ALLOW_ALL_ORIGINS = True
 
