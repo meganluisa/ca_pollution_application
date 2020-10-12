@@ -10,6 +10,8 @@ from rest_framework import generics, viewsets
 from rest_framework import generics
 from django.contrib.gis.serializers.geojson import Serializer 
 
+
+
 class CustomSerializer(Serializer):
     def end_object(self, obj):
         for field in self.selected_fields:

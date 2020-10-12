@@ -16,7 +16,7 @@ import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+TEMPLATES_DIRS = os.path.join(BASE_DIR,'templates')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '%d6lv2ww(p&l-i+dgw=zdlw@3@8l^sa2x0%@h(c*^s=&xcf&p$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = []
 
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -66,7 +66,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates')
+                TEMPLATES_DIRS,
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -90,14 +90,20 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'thesis_db',
-        'USER': 'postgres',
-        'PASSWORD': 'R0cks4J0cks!',
+        'USER': 'testing',
+        'PASSWORD': 'abcd12345',
         'HOST': 'localhost',
         'PORT': '5432'
     }
 }
-
-
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.XXX', 
+        #'NAME': 'mydatabase',
+    }
+}
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -135,18 +141,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    os.path.join(BASE_DIR, 'staticfiles'),
-    os.path.join(BASE_DIR, 'staticfiles'),
-    os.path.join(BASE_DIR, 'staticfiles'),
-
-    BASE_DIR / 'templates/',
+    '/var/www/static/',
 ]
+
+
 
 django_heroku.settings(locals())
 # db_from_env = dj_database_url.config(conn_max_age=500)
 # DATABASES['default'].update(db_from_env)
+
+
+GEOS_LIBRARY_PATH = os.getenv('GEOS_LIBRARY_PATH')
+GDAL_LIBRARY_PATH = os.getenv('GDAL_LIBRARY_PATH')
+#GEOS_LIBRARY_PATH = '/home/bob/local/lib/libgeos_c.so'
