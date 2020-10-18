@@ -177,14 +177,14 @@
                 }
               </script>
           
-              <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
-              <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+              <script src="https://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+              <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
           
             
               <script>
                 // Setup map
                 var terrain = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg'),
-                    streets =  L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    streets =  L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
                     });
                   
                 var baseMaps = {
@@ -308,14 +308,14 @@
                 }).addTo(myMap);
           
                 // Get JSON from web request
-                // $.getJSON('http://localhost:8000/ca_pollution/api/tri_releases/', function(json) {
+                // $.getJSON('https://localhost:8000/ca_pollution/api/tri_releases/', function(json) {
                   // Update geojson layer with data
                   // console.log(json);
                   // geojsonLayer.addData(json); 
   
   
                 // Get JSON from your test file
-                $.getJSON("tri_data.json", function(json) {
+                $.getJSON("static/tri_release.json", function(json) {
                 // Update geojson layer with data
                   console.log(json);
                   geojsonLayer.addData(json); 
@@ -412,7 +412,7 @@
   
       function drawChart() {
         var jsonData = $.ajax({
-          url: "tri_data.json",
+          url: "static/tri_release.json",
           dataType: "json",
           //async: false,
           success: function (jsonData){
