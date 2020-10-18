@@ -2,14 +2,14 @@
 function openNav() {
     document.getElementById("sidenav").style.left = "0px";
     document.getElementById("sidenavclose").style.left = "280px";
-    document.getElementById("years").style.left = "280px";
+    // document.getElementById("years").style.left = "280px";
   }
   
   /* Set the width of the side navigation to 0 */
   function closeNav() {
     document.getElementById("sidenav").style.left = "-270px";
     document.getElementById("sidenavclose").style.left = "-40px";
-    document.getElementById("years").style.left = "20px";
+    // document.getElementById("years").style.left = "20px";
 }
 
 
