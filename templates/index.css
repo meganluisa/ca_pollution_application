@@ -34,7 +34,9 @@ html, body {
 
 #map {
     height: 100%;
-    background: #1C2321;
+    background: #000;
+    transition: 0.5s;
+
 }
 
 header {
@@ -47,20 +49,24 @@ header {
     text-align: left;
     width: 100%;
     z-index: 1002;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
 }
 
-
 .main {
-    background-color: rgba(1,1,1,.2);
+    background-color: #1C2321;
     border: none;
     border-radius: 5px;
-    position: absolute;
     bottom: 10px;
     left: 0px;
     padding: 5px;
+    position: absolute;
     transition: 0.5s;
-    /* width: 40%; */
+    display: block;
+    /* width: 90%; */
 }
+
 
 .sidenavbutton{
     background-color: rgb(255,255,255);
@@ -95,6 +101,9 @@ header {
 .sidenav{
     overflow: scroll;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .sidenav #filter {
@@ -129,8 +138,8 @@ header {
 }
 
 .sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 270px; /* 0 width - change this with JavaScript */
+    height: 90%; /* 100% Full-height */
+    width: 400px; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1001; /* Stay on top */
     top: 70px; /* Stay at the top */
@@ -141,6 +150,14 @@ header {
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
   }
 
+#filterblock {
+    height: 400px;
+}
+
+/* .level2 li {
+    display: inline-block;
+    height: 350px;
+} */
 .listtitle span{
     background-color: rgb(255,255,255);
     float: right;
@@ -150,11 +167,12 @@ header {
 .multiselect-container .dropdown-menu{
     left: 5px !important;
     top: 40px !important;
+    bottom: 100px !important;
 } 
 
-.leaflet-left .leaflet-control {
-    margin-left: 35px !important;
-}
+/* .leaflet-left .leaflet-control {
+    margin-left: 1250px !important;
+} */
 
 .leaflet-top .leaflet-control {
     margin-top: 120px !important;
@@ -243,6 +261,7 @@ header {
     margin-right: 8px;
     opacity: 0.7;
 }
+
 
 /* Modal */
 /* The Modal (background) */
