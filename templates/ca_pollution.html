@@ -37,7 +37,7 @@
                 <h2>Welcome to Cal ToxTrack </h2>
               </div>
               <div class="modal-body">
-                <p>This GIS web application relies on publicly available datasets and is meant to help you spatiotemporally explore pollution in California</p>
+                <p>This GIS web application relies on publicly available datasets and is meant to help you spatiotemporally explore pollution in California.</p>
                 <p>Historic and current data are available to view through use of the time slider and filtering panel.</p>
                 <p> </p>
                 <p> </p>
@@ -312,7 +312,7 @@
   
   
                 // Get JSON from your test file
-                $.getJSON("static/tri_release.json", function(json) {
+                $.getJSON("static/tri_data.json", function(json) {
                 // Update geojson layer with data
                   console.log(json);
                   geojsonLayer.addData(json); 
@@ -409,7 +409,7 @@
   
       function drawChart() {
         var jsonData = $.ajax({
-          url: "static/tri_release.json",
+          url: "static/tri_data.json",
           dataType: "json",
           //async: false,
           success: function (jsonData){
