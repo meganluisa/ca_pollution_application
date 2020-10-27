@@ -55,15 +55,9 @@ header {
 }
 
 .main {
-    background-color: #1C2321;
-    border: none;
-    border-radius: 5px;
-    bottom: 10px;
-    left: 0px;
-    padding: 5px;
-    position: absolute;
-    transition: 0.5s;
-    display: block;
+    margin: 5px;
+    flex-shrink: 0;
+    margin-bottom: 60px;
     /* width: 90%; */
 }
 
@@ -99,11 +93,17 @@ header {
 }
 
 .sidenav{
-    overflow: scroll;
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    height: 100%; /* 100% Full-height */
+    width: 400px; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1001; /* Stay on top */
+    top: 60px; /* Stay at the top */
+    background-color: #1C2321; /* Black*/
+   /* overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
 .sidenav #filter {
@@ -137,21 +137,10 @@ header {
     color: rgb(255,255,255) !important;
 }
 
-.sidenav {
-    height: 90%; /* 100% Full-height */
-    width: 400px; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1001; /* Stay on top */
-    top: 70px; /* Stay at the top */
-    left: 0;
-    background-color: #1C2321; /* Black*/
-   /* overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 14px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-  }
 
 #filterblock {
-    height: 400px;
+    flex-grow: 1;
+    overflow-y: auto;
 }
 
 /* .level2 li {
