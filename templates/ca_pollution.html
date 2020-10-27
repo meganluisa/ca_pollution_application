@@ -23,7 +23,7 @@
     <body>
 
         <header id="header">
-          <h1>California Pollution App</h1>
+          <h1>Cal ToxTrack</h1>
           <button id="myBtn">Welcome Info</button>
         </header>
   
@@ -278,22 +278,24 @@
                       var facility_st = feature.properties.f__st;
                       var facility_zip = feature.properties.f__zip;
                       var federal = feature.properties.f__federal;
-                      layer.bindPopup("<div class='popuptitle'>YEAR: </div><div class='popupdata'>" + year + 
-                        "</div><div class='popuptitle'>POLLUTANT: </div><div class='popupdata'>" + pollutant + 
-                        "</div><div class='popuptitle'>CAS ID: </div><div class='popupdata'>" + cas_id + 
-                        "</div><div class='popuptitle'>RELEASE:</div><div class='popupdata'>" + release + " " + unit + 
-                        "</div><div class='popuptitle'>FACILITY:</div><div class='popupdata'>" + facility + 
-                        "</div><div class='popuptitle'>INDUSTRY:</div><div class='popupdata'>" + industry + 
-                        "</div><div class='popuptitle'>FACILITY ID:</div><div class='popupdata'>" + facility_id + 
-                        "</div><div class='popuptitle'>ADDRESS:</div><div class='popupdata'>" + facility_address + ", " + facility_city + ", " + facility_city + ", " + facility_zip + " " + facility_st + 
-                        "</div><div class='popuptitle'>FEDERAL:</div><div class='popupdata'>" + federal + "</div>", 
-                           { maxWidth: 500, 
-                            maxHeight: 400, 
-                            autoPan: true, 
-                            closeButton: true 
-                          });
-                    }
-                  },
+                      layer.bindPopup("<div class='popuptitle'>TRI RELEASE</div><br>" + 
+                        "<div class='popuptitle'>YEAR: </div><div class='popupdata'>" + year + 
+                          "</div><div class='popuptitle'>POLLUTANT: </div><div class='popupdata'>" + pollutant + 
+                          "</div><div class='popuptitle'>CAS ID: </div><div class='popupdata'>" + cas_id + 
+                          "</div><div class='popuptitle'>RELEASE:</div><div class='popupdata'>" + release + " " + unit + 
+                          "</div><div class='popuptitle'>FACILITY:</div><div class='popupdata'>" + facility + 
+                          "</div><div class='popuptitle'>INDUSTRY:</div><div class='popupdata'>" + industry + 
+                          "</div><div class='popuptitle'>FACILITY ID:</div><div class='popupdata'>" + facility_id + 
+                          "</div><div class='popuptitle'>ADDRESS:</div><div class='popupdata'>" + facility_address + ", " + facility_city + ", " + facility_city + ", " + facility_zip + " " + facility_st + 
+                          "</div><div class='popuptitle'>FEDERAL:</div><div class='popupdata'>" + federal + "</div><br>" + "<div class='popuptitle'>Data last downloaded from <a href='https://www.epa.gov/enviro/tri-search' target='_blank'>source</a> on 09/30/2020.</div>", 
+                            //  { maxWidth: 500, 
+                              {maxHeight: 200, 
+                              autoPan: true, 
+                              closeButton: true, 
+                              closeOnClick: true,
+                        });
+                  }
+                },
                   pointToLayer: function (feature, latlng) {
                     var geojsonMarkerOptions = {
                     radius: getSize(Big(feature.properties.release).toPrecision(5)),
