@@ -43,7 +43,7 @@ header {
     background-color: #1C2321;
     font-size: 1.1em;
     color: rgb(255,255,255);
-    height: 60px;
+    height: 40px;
     padding: 5px;
     position: fixed;
     text-align: left;
@@ -54,13 +54,20 @@ header {
     justify-content: start;
 }
 
+header h1 {
+    flex-grow: 1;
+}
+
 .main {
     margin: 5px;
     flex-shrink: 0;
-    margin-bottom: 60px;
+    margin-bottom: 45px;
     /* width: 90%; */
 }
 
+#chart_div {
+   padding: 10px 20px;
+}
 
 .sidenavbutton{
     background-color: rgb(255,255,255);
@@ -100,16 +107,20 @@ header {
     width: 400px; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1001; /* Stay on top */
-    top: 60px; /* Stay at the top */
+    top: 50px; /* Stay at the top */
     background-color: #1C2321; /* Black*/
    /* overflow-x: hidden; /* Disable horizontal scroll */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
+.sidenav ul .level1 {
+  width: 380px;
+}
+
 .sidenav #filter {
     padding: 5px; 
     margin: 5px;
-    width: 240px;
+    width: 360px;
 }
 
 .sidenav a {
@@ -332,11 +343,10 @@ header {
   }
 
   #myBtn {
-      padding: 2px;
+      padding: 0 20px;
       height: 30px;
       border-radius: 5px;
       border: 10px;
-      margin: 11px;
+      margin: 5px 20px;
       vertical-align: top;
-      margin-left: 40px;
   }
