@@ -140,7 +140,7 @@ header h1 {
 }
 
 .sidenav .level1 {
-  width: 380px;
+  width: 98%;
 }
 
 .sidenav #filter {
@@ -149,7 +149,7 @@ header h1 {
     width: 90%;
 }
 
-.sidenav #filter p {
+.sidenav #filterblock p {
     text-align: center;
     padding: 1em;
 }
