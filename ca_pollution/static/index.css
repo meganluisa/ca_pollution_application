@@ -33,11 +33,18 @@ html, body {
     font-family: Verdana, Geneva, sans-serif;
 }
 
+#mapcontainer {
+    height: 100%;
+    position: fixed;
+    left: 25%;
+    right: 20%;
+}
+
 #map {
     height: 100%;
-    background: #000;
+    position: relative;
+    background: #1C2321;
     transition: 0.5s;
-
 }
 
 header {
@@ -53,6 +60,8 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: start;
+    border-style: solid;
+    border-color: olive;
 }
 
 header h1 {
@@ -105,13 +114,29 @@ header h1 {
     flex-direction: column;
     justify-content: flex-start;
     height: 100%; /* 100% Full-height */
-    width: 400px; /* 0 width - change this with JavaScript */
+    width: 25%; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1001; /* Stay on top */
     top: 50px; /* Stay at the top */
     background-color: #1C2321; /* Black*/
    /* overflow-x: hidden; /* Disable horizontal scroll */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    border-style: solid;
+    border-color: olive;
+}
+
+.sidenavright {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    right: 0px;
+    z-index: 1001;
+    top: 50px;
+    width: 20%;
+    height: 100%;
+    background-color: #1C2321;
+    border-style: solid;
+    border-color: olive;
 }
 
 .sidenav .level1 {
@@ -121,9 +146,13 @@ header h1 {
 .sidenav #filter {
     padding: 5px; 
     margin: 5px;
-    width: 360px;
+    width: 90%;
 }
 
+.sidenav #filter p {
+    text-align: center;
+    padding: 1em;
+}
 .sidenav a {
     color: rgb(255,255,255);
 }

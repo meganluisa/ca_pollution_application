@@ -87,14 +87,15 @@
           }
         </script>
   
-  
+        <div id="mapcontainer">
           <div id="map"></div>
-          
+        </div>
           <div id="sidenavopen" class="sidenavbutton" href="javascript:void(0)" onclick="openNav()">&#9776;</div>
           <div id="sidenavclose" class="sidenavbutton closebtn" href="javascript:void(0)" onclick="closeNav()">&times;</div>
-              
+          <div class="sidenavright"></div>  
           <div id="sidenav" class="sidenav" style="color: rgb(250, 250, 250);">
             <div id="filterblock">
+              <p>Pollution Data Attribute Filter</p>
             <input id="filter" type="text" placeholder="Search..."/>
               <ul class="level1">
                 <li class="listtitle expander">Industry<span class="ui-icon ui-icon-plus" style="display:inline-block"></span></li>
@@ -447,7 +448,6 @@
                 hAxis: { title: 'Release in lbs.', titleTextStyle: {fontSize: 14, bold: true, italic: false}}, 
                 legend: {position: 'none',},
                 series: {labelInLegend: true, visibleInLegend: true,},
-                width: 350,
               };
   
               var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
