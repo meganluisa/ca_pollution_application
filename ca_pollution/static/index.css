@@ -30,6 +30,7 @@ header {
 
 html, body {
     height: 100%;
+    font-family: Verdana, Geneva, sans-serif;
 }
 
 #map {
@@ -113,7 +114,7 @@ header h1 {
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
-.sidenav ul .level1 {
+.sidenav .level1 {
   width: 380px;
 }
 
