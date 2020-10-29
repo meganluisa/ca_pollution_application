@@ -129,6 +129,7 @@ header h1 {
     display: flex;
     position: fixed;
     flex-direction: column;
+    justify-content: space-around;
     right: 0px;
     z-index: 1001;
     top: 50px;
@@ -137,6 +138,19 @@ header h1 {
     background-color: #1C2321;
     border-style: solid;
     border-color: olive;
+}
+
+#layerswitch {
+    background: lightsteelblue;
+    height: 30%;
+    margin: 10px;
+    color: white;
+}
+
+.sidenavright p {
+    color: white;
+    padding: 1em;
+    text-align: center;
 }
 
 .sidenav .level1 {

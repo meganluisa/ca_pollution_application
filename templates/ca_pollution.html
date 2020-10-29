@@ -92,7 +92,18 @@
         </div>
           <div id="sidenavopen" class="sidenavbutton" href="javascript:void(0)" onclick="openNav()">&#9776;</div>
           <div id="sidenavclose" class="sidenavbutton closebtn" href="javascript:void(0)" onclick="closeNav()">&times;</div>
-          <div class="sidenavright"></div>  
+        <!-- Right Panel   -->
+          <div class="sidenavright">
+            <p>Layers Table of Contents</p>
+            <div id="layerswitch">
+              
+              <label><input type="checkbox" checked=true value="geojsonLayer" > Toxic Release Inventory</label><br>
+              <label><input type="checkbox" value="test" > Test</label>
+            
+              </div>
+          </div> 
+          
+        <!-- Left Panel -->
           <div id="sidenav" class="sidenav" style="color: rgb(250, 250, 250);">
             <div id="filterblock">
               <p>Pollution Data Attribute Filter</p>
@@ -200,6 +211,8 @@
                   maxZoom: 17,
                   layers: [terrain, streets]
                   });
+
+                  L.control.layers(baseMaps,null, {collapsed: false, position: 'bottomleft'}).addTo(myMap);
   
                   function getPixel(p) {
                   return p > 1000 ? 5:
@@ -334,6 +347,20 @@
                     }
                   }
                 });
+
+              // Use jQuery to listen for Table of Contents event changes to add/remove layers
+              $( '#layerswitch input[type=checkbox]' ).click(function( event ) {
+                  layerClicked = window[event.target.value];
+                  console.log(layerClicked);
+                  if (myMap.hasLayer(layerClicked)) {
+                    console.log(layerClicked);
+                    myMap.removeLayer(layerClicked);
+                  }
+                  else{
+                    console.log("added!");
+                    myMap.addLayer(layerClicked);
+                  };
+                });
   
   
               // Legend Control
@@ -354,10 +381,8 @@
                 }
                 legend.addTo(myMap);
   
-            var pollutionLayers = {
-              "Toxic Release Inventory" : geojsonLayer, 
-            };
-            L.control.layers(baseMaps, pollutionLayers, {collapsed: false}).addTo(myMap);
+
+
             L.control.zoom({position: 'topright'}).addTo(myMap);
             L.control.scale({imperial: true, metric: false, position: "topright"}).addTo(myMap);
             
