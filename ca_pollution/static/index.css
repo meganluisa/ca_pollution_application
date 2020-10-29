@@ -129,7 +129,7 @@ header h1 {
     display: flex;
     position: fixed;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     right: 0px;
     z-index: 1001;
     top: 50px;
@@ -141,7 +141,6 @@ header h1 {
 }
 
 #layerswitch {
-    background: lightsteelblue;
     height: 30%;
     margin: 10px;
     color: white;
@@ -151,6 +150,22 @@ header h1 {
     color: white;
     padding: 1em;
     text-align: center;
+}
+.sidenavright .pollutionlabel {
+    display:flex;
+    justify-content: flex-start;
+    background-color: teal;
+    border-width: 0.2px;
+    border-radius: 30px;
+    width: 94%;
+    padding: 0.2em .4em;
+
+}
+
+.sidenavright .pollutionlabel p {
+    padding: 0;
+    color: white;
+    vertical-align: middle;
 }
 
 .sidenav .level1 {
