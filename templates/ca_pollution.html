@@ -218,7 +218,7 @@
                   maxZoom: 17,
                   layers: [terrain, streets, satellite, dark]
                   });
-                  
+
                   L.control.layers(baseMaps,null, {collapsed: false, position: 'bottomleft'}).addTo(myMap);
   
                   function getPixel(p) {
@@ -338,7 +338,7 @@
   
   
                 // Get JSON from your test file
-                $.getJSON("{% static 'tri_data.json' %}", function(json) {
+                $.getJSON("static/tri_data.json", function(json) {
                 // Update geojson layer with data
                   console.log(json);
                   geojsonLayer.addData(json); 
@@ -447,7 +447,7 @@
   
       function drawChart() {
         var jsonData = $.ajax({
-          url: "{% static 'tri_data.json' %}",
+          url: "static/tri_data.json",
           dataType: "json",
           //async: false,
           success: function (jsonData){
