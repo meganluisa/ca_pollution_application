@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'thesis_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'thesis_db'
+        'NAME': 'thesis_db',
         'USER': 'testing',
         'PASSWORD': 'abcd12345',
         'HOST': 'localhost',
