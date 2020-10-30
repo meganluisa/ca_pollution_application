@@ -36,11 +36,9 @@ from django.conf import settings
 #         return Response(new_tri_json)
 
 def index(request):
-
     now = datetime.datetime.now()
     cxt = {'now': now, 'mapbox': settings.MAPBOXAPI}
-    html = template.loader.get_template('ca_pollution.html').render(cxt)
-
-    return HttpResponse(html)
+    # html = template.loader.get_template('ca_pollution.html').render(cxt)
+    return render(request, 'ca_pollution.html', cxt)
 
 
