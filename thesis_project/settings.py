@@ -13,6 +13,11 @@ import os
 from pathlib import Path
 import django_heroku
 import dj_database_url
+import environ
+
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +27,8 @@ TEMPLATES_DIRS = os.path.join(BASE_DIR,'templates')
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%d6lv2ww(p&l-i+dgw=zdlw@3@8l^sa2x0%@h(c*^s=&xcf&p$'
+SECRET_KEY = env("SECRET_KEY")
+MAPBOXAPI = env("MAPBOX_API")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -90,9 +96,9 @@ WSGI_APPLICATION = 'thesis_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'thesis_db',
-        'USER': 'testing',
-        'PASSWORD': 'abcd12345',
+        'NAME': env("DATABASE_NAME"),
+        'USER': env("DATABASE_USER"),
+        'PASSWORD': env("DATABASE_PASSWORD"),
         'HOST': 'localhost',
         'PORT': '5432'
     }

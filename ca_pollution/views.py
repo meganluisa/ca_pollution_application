@@ -1,8 +1,20 @@
 # from django.contrib.gis.db import models
+import datetime
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.template import Context, loader
+from django import template
+from django.conf import settings
+# from django.shortcuts import render_to_response
+# from django.template import RequestContext
+# from django.views.generic.simple import direct_to_template
+
+# def my_generic_view(request, template='../templates/COPY_ca_pollution.html'):
+#     return direct_to_template(request, template, context={
+#         'MAPBOXAPI': os.env.get('MAPBOX_API')
+#     })
+
 
 # from rest_framework.views import APIView
 # from rest_framework.response import Response
@@ -24,4 +36,11 @@ from django.template import Context, loader
 #         return Response(new_tri_json)
 
 def index(request):
-    return render(request, 'ca_pollution.html')
+
+    now = datetime.datetime.now()
+    cxt = {'now': now, 'mapbox': settings.MAPBOXAPI}
+    html = template.loader.get_template('ca_pollution.html').render(cxt)
+
+    return HttpResponse(html)
+
+
