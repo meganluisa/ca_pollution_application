@@ -104,6 +104,15 @@
               <label><input type="checkbox" checked=true value="dmrGeojsonLayer" > Discharge Monitoring Report</label>
               </div>
           </div> 
+        <!-- Toggle function    -->
+        <script>
+          function toggle(source) {
+            checkboxes = document.getElementsByClassName('event-type');
+            for(var i=0, n=checkboxes.length;i<n;i++) {
+              checkboxes[i].checked = source.checked;
+            }
+          }
+        </script>
           
         <!-- Left Panel -->
           <div id="sidenav" class="sidenav" style="color: rgb(250, 250, 250);">
@@ -113,6 +122,7 @@
               <ul class="level1">
                 <li class="listtitle expander">Industry (TRI only)<span class="ui-icon ui-icon-plus" style="display:inline-block"></span></li>
                   <ul class="level2 condense" class="searchable">
+                    <li><input type="checkbox" class="event-type" name="select-all" onClick="toggle(this)" >Select All (On/Off)</input></li>
                     <li><input type="checkbox" class="event-type" name="plastics-and-rubber" value="Plastics and Rubber" checked="true">Plastics and Rubber</input></li>
                     <li><input type="checkbox" class="event-type" name="furniture" value="Furniture"  checked="true">Furniture</input></li>
                     <li><input type="checkbox" class="event-type" name="fabricated-metals" value="Fabricated Metals" checked="true">Fabricated Metals</input></li>
@@ -160,21 +170,6 @@
             </div>
         </div>
   
-  
-          
-              <!-- Initialize the plugin: 
-              <script type="text/javascript">
-                $(document).ready(function() {
-                    $('#event-types').multiselect({
-                      enableFiltering: true,
-                      includeSelectAllOption: true,
-                      buttonWidth: "250px",
-                      maxHeight: "100px",
-                      enableCollapsibleOptGroups: true,
-                      enableClickableOptGroups: true
-                    });
-               });
-               -->
               </script>
               
   
@@ -467,48 +462,7 @@
   
       // Set a callback to run when the Google Visualization API is loaded.
       google.charts.setOnLoadCallback(drawChart);
-  
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      // function drawChart() {
-      //   var jsonData = $.ajax({
-      //     url: "tri_data.json",
-      //     dataType: "json",
-      //     //async: false,
-      //     success: function (jsonData){
-      //       console.log(jsonData);
-      //       // var parsedForGoogle = function (jsonData) {
-      //       //   return JSON.parse(this.jsonData);
-      //       // };
-      //       // var newJson = parsedForGoogle();
-      //       var data = new google.visualization.DataTable();
-  
-      //       data.addColumn('string', 'industry');
-      //       data.addColumn('number', 'release');
-            
-      //       console.log(jsonData.features.length);
-            
-      //       for (var i=0; i < jsonData.features.length; i++) {
-      //         industry = jsonData.features[i].properties["industry"];
-      //         release = parseFloat(jsonData.features[i].properties["release"]);
-      //         console.log(typeof release);
-      //         data.addRow([industry, release]);
-      //       }
-          
-      //       var options = {
-      //           title: 'TRI Release Histogram',
-      //           histogram: {lastBucketPercentile: 15},
-      //           //histogram: { lastBucketPercentile: 5 },
-      //           vAxis: { scaleType: 'null' } 
-      //         };
-  
-      //         var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
-      //         chart.draw(data, options);
-      //       }
-      //   });
-      // }
-  
+
       function drawChart() {
         var jsonData = $.ajax({
           url: "static/tri_data.json",
@@ -516,10 +470,6 @@
           //async: false,
           success: function (jsonData){
             console.log(jsonData);
-            // var parsedForGoogle = function (jsonData) {
-            //   return JSON.parse(this.jsonData);
-            // };
-            // var newJson = parsedForGoogle();
             var data = new google.visualization.DataTable();
   
             data.addColumn('string', 'industry');
@@ -538,7 +488,6 @@
             var options = {
                 title: 'TRI Release Histogram for ' + checkboxStates.years[0],
                 histogram: {lastBucketPercentile: 15},
-                //histogram: { lastBucketPercentile: 5 },
                 vAxis: { scaleType: 'null', title: 'Facility Count', titleTextStyle: {fontSize: 14, bold: true, italic: false} },
                 colors: ['mediumpurple'],
                 hAxis: { title: 'Release in lbs.', titleTextStyle: {fontSize: 14, bold: true, italic: false}}, 
@@ -552,18 +501,6 @@
         });
       }
        
-      // Create the data table.
-      // var data = new google.visualization.DataTable(jsonData);
-      
-      // Set chart options
-     // var options = {'title':'How Much Pizza I Ate Last Night',
-          //  'width':400,
-          //  'height':300};
-      
-      // Instantiate and draw our chart, passing in some options.
-      //console.log(data.cols);
-      // var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-      // chart.draw(data, options);
     
     </script>
 

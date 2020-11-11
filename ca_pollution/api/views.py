@@ -34,12 +34,12 @@ class CustomSerializer(Serializer):
 class TriReleaseList(APIView):
     def get(self, request):
         serializers = CustomSerializer()
-        tri_releases = TriRelease.objects.select_related('f').filter(year__year=2018)[:50]
+        tri_releases = TriRelease.objects.select_related('f').all()[:50]
         data = serializers.serialize(tri_releases, geometry_field='geom', fields=('year', 'frs_id', 'f_lat', 'f_long', 'industry', 'pollutant', 'cas_id', 'release', 'unit', 'clean_air', 'metal', 'carcinogen', 'medium', 'f__f_name', 'f__f_id', 'f__address', 'f__city', 'f__county', 'f__st', 'f__zip', 'f__federal'))
         new_tri_json = json.loads(data)   
                 #only_features = new_tri_json.get('features')
-        #with open("C:\\Users\\MeganLuisa\\web_gis\\thesis_project\\ca_pollution\\static\\tri_data.json", 'a') as outfile:
-         #   json.dump(only_features, outfile, indent =4)
+        # with open("C:\\Users\\MeganLuisa\\web_gis\\thesis_project\\templates\\all.json", 'w') as outfile:
+        #     json.dump(new_tri_json, outfile, indent =4)
          
         return Response(new_tri_json)
 
