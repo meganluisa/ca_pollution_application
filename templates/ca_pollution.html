@@ -404,6 +404,7 @@
                   for (let input of document.querySelectorAll('input')) {
                     input.onchange = (e) => {
                       geojsonLayer.clearLayers()
+                      trimarkers.clearLayers();
                       updateCheckboxStates();
                       geojsonLayer.addData(json);
                       console.log(checkboxStates.years);
