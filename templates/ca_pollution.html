@@ -21,6 +21,10 @@
         <script type="text/javascript" src="{% static 'main.js' %}"></script> 
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript" src="{% static 'big.js/big.js' %}"></script>
+        <script src="https://unpkg.com/@esri/arcgis-rest-request@3.0.0/dist/umd/request.umd.js"></script>
+        <script src="https://unpkg.com/@esri/arcgis-rest-auth@3.0.0/dist/umd/auth.umd.js"></script>
+        <script src="https://unpkg.com/@esri/arcgis-rest-feature-layer@3.0.0/dist/umd/feature-layer.umd.js"></script>
+
         
     </head>
   
@@ -386,6 +390,47 @@
                     return L.circleMarker(latlng, geojsonMarkerOptions);
                   }
                 }).addTo(myMap);
+
+
+                var myStyle = {
+                    "color": "#ff7800",
+                    "weight": 2,
+                    "opacity": 0.65
+                };
+
+                var populationLayer = L.geoJson(null, {
+                  onEachFeature:  function(feature, layer) {
+                    layer.bindPopup("2021 TOTAL POPULATION ESTIMATE: " + feature.properties.B01001_001E + " people</br>" +
+                        "NAME: " + feature.properties.NAME,
+                        {maxHeight: 200, autoPan: true, closeButton: true, closeOnClick: true,});
+                  },
+                  style: myStyle
+                }).addTo(myMap);
+
+                var popJSON;
+                  
+                  
+                const apiKey = ' {{ esri }}'
+                const authentication = new arcgisRest.ApiKey({
+                  key: apiKey
+                });
+              
+                arcgisRest.queryFeatures({
+                url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/ACS_Total_Population_Boundaries/FeatureServer/1",
+                // url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/ACS_Total_Population_Boundaries/FeatureServer/2",
+                where: "State LIKE 'California'",
+                f: "geojson",
+                authentication
+                })
+                  .then(response => {
+                    popJSON = response.features;
+                    console.log(popJSON);
+                    populationLayer.addData(popJSON);
+                    // console.log("Result: "+ popJSON[0].properies.State);
+                    // console.log(populationLayer);
+                    document.getElementById("result").textContent = JSON.stringify(response.features, null, 2);
+                  
+                  });
           
                 // Get JSON from web request
                 // $.getJSON('https://localhost:8000/ca_pollution/api/tri_releases/', function(json) {
