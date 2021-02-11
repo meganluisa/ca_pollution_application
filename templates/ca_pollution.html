@@ -400,7 +400,7 @@
 
                 var populationLayer = L.geoJson(null, {
                   onEachFeature:  function(feature, layer) {
-                    layer.bindPopup("2021 TOTAL POPULATION ESTIMATE: " + feature.properties.B01001_001E + " people</br>" +
+                    layer.bindPopup("<div style='font-weight: bold'>2021 ACS TOTAL POPULATION ESTIMATE: </div>" + feature.properties.B01001_001E + " people</br>" +
                         "NAME: " + feature.properties.NAME,
                         {maxHeight: 200, autoPan: true, closeButton: true, closeOnClick: true,});
                   },
