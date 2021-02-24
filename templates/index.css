@@ -36,7 +36,7 @@ html, body {
 #mapcontainer {
     height: 100%;
     position: fixed;
-    left: 25%;
+    left: 18%;
     right: 20%;
 }
 
@@ -114,7 +114,7 @@ header h1 {
     flex-direction: column;
     justify-content: flex-start;
     height: 100%; /* 100% Full-height */
-    width: 25%; /* 0 width - change this with JavaScript */
+    width: 18%; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1001; /* Stay on top */
     top: 50px; /* Stay at the top */

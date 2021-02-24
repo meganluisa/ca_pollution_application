@@ -417,7 +417,6 @@
               
                 arcgisRest.queryFeatures({
                 url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/ACS_Total_Population_Boundaries/FeatureServer/1",
-                // url: "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/ACS_Total_Population_Boundaries/FeatureServer/2",
                 where: "State LIKE 'California'",
                 f: "geojson",
                 authentication
@@ -426,8 +425,6 @@
                     popJSON = response.features;
                     console.log(popJSON);
                     populationLayer.addData(popJSON);
-                    // console.log("Result: "+ popJSON[0].properies.State);
-                    // console.log(populationLayer);
                     document.getElementById("result").textContent = JSON.stringify(response.features, null, 2);
                   
                   });

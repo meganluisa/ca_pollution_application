@@ -39,6 +39,6 @@ def index(request):
     now = datetime.datetime.now()
     cxt = {'now': now, 'mapbox': settings.MAPBOXAPI, 'esri': settings.ESRIAPI}
     # html = template.loader.get_template('ca_pollution.html').render(cxt)
-    return render(request, 'ca_pollution.html', cxt)
+    return render(request, 'COPY_ca_pollution.html', cxt)
 
 
