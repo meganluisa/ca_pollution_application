@@ -9,3 +9,4 @@ ca_pollution/__pycache__/
 templates/COPY_ca_pollution.html
 .env
 ca_pollution/static/all.json
+staticfiles

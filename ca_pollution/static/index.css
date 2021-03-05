@@ -33,11 +33,12 @@ html, body {
     font-family: Verdana, Geneva, sans-serif;
 }
 
+
 #mapcontainer {
     height: 100%;
     position: fixed;
-    left: 18%;
-    right: 20%;
+    left: 0%;
+    right: 38%;
 }
 
 #map {
@@ -109,97 +110,154 @@ header h1 {
     margin-left: 50px;
 }
 
-.sidenav{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    height: 100%; /* 100% Full-height */
-    width: 18%; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1001; /* Stay on top */
-    top: 50px; /* Stay at the top */
-    background-color: #1C2321; /* Black*/
-   /* overflow-x: hidden; /* Disable horizontal scroll */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-    border-style: solid;
-    border-color: olive;
+.sidenav {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: flex-start; */
+    /* height: 100%; 100% Full-height */
+    /* width: 18%; 0 width - change this with JavaScript */
+    /* position: fixed; Stay in place */
+    /* z-index: 1001; Stay on top */
+    /* top: 50px; Stay at the top */
+    /* background-color: #1C2321; Black */
+   overflow-x: hidden; /* Disable horizontal scroll
+    /* transition: 0.5s; 0.5 second transition effect to slide in the sidenav */
+    /* border-style: solid; */
+    /* border-color: olive; */
 }
 
 .sidenavright {
     display: flex;
     position: fixed;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     right: 0px;
     z-index: 1001;
     top: 50px;
-    width: 20%;
+    width: 38%;
     height: 100%;
     background-color: #1C2321;
     border-style: solid;
     border-color: olive;
 }
 
-#layerswitch {
+.sidenavright p {
+    color: white;
+    padding: 1em;
+    text-align: left;
+}
+
+.sidenavright h2 {
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    padding: 0.5em;
+}
+
+.sidenavright .together {
+    display: flex;
+    flex-direction: row;
+}
+.sidenavright .toc {
+    border: 5px solid olive;
+    border-radius: 20px;
+    order: 1;
+    flex-grow: 1;
+    /* flex-basis: 0; */
+    margin: 0.75em;
+    width: 200px;
+    height: 250px;
+
+}
+
+.toc h1 {
+    padding: 0.2em .4em;   
+    font-size: 20px;
+    color: white;
+}
+
+/* .toc h2 { */
+    /* display:flex; */
+    /* justify-content: flex-start; */
+    /* background-color: teal;
+    border-width: 0.1px;
+    border-radius: 30px;
+    width: 94%;
+    padding: 0.2em .4em;
+    font-size: 1em;
+
+} */
+
+.toc label {
     height: 30%;
     margin: 10px;
     color: white;
 }
 
-.sidenavright p {
-    color: white;
-    padding: 1em;
-    text-align: center;
-}
-.sidenavright .pollutionlabel {
-    display:flex;
-    justify-content: flex-start;
-    background-color: teal;
-    border-width: 0.2px;
-    border-radius: 30px;
-    width: 94%;
-    padding: 0.2em .4em;
-
-}
-
-.sidenavright .pollutionlabel p {
-    padding: 0;
+.toc p {
+    margin: 0.5em;
     color: white;
     vertical-align: middle;
+    background-color: darkslategray;
+    padding: 2px;
+    border-radius: 15px;
 }
 
-.sidenav .level1 {
+.sidenavright .main {
+    order: 2;
+    /* align-self: flex-end; */
+}
+
+.sidenavright .filter {
+    border: 5px solid olive;
+    border-radius: 20px;
+    flex-grow: 0;
+    margin: 0.75em;
+    flex-wrap: nowrap;
+    /* position: fixed */
+    height: 400px;
+    width: 200px;
+    overflow: hidden;
+}
+
+
+
+.sidenavright .level1 {
   width: 98%;
+  /* font-size: 12px; */
+  
 }
 
-.sidenav #filter {
+.sidenavright #filter {
     padding: 5px; 
     margin: 5px;
     width: 90%;
 }
 
-.sidenav #filterblock p {
-    text-align: center;
+.sidenavright #filterblock p {
+    /* text-align: left; */
     padding: 1em;
 }
-.sidenav a {
+.sidenavright a {
     color: rgb(255,255,255);
 }
 
-.sidenav a {
+.sidenavright a {
     padding: 5px;
 }
 
-.sidenav li {
+.sidenavright li {
     padding: 5px;
     color: rgb(255,255,255);
+    margin-left: auto;
 }
 
-.sidenav input {
+.sidenavright input {
     margin-right: 10px;
+    margin: left;
 }
 
-.sidenav ul.condense {
+.sidenavright ul.condense {
     display: none;
 }
 
@@ -211,6 +269,9 @@ header h1 {
 #filterblock {
     flex-grow: 1;
     overflow-y: auto;
+    overflow-x: hidden;
+    height: 400px;
+    margin: 10px;
 }
 
 /* .level2 li {

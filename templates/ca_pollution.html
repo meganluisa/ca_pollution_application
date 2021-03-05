@@ -99,19 +99,75 @@
         <div id="mapcontainer">
           <div id="map"></div>
         </div>
-          <div id="sidenavopen" class="sidenavbutton" href="javascript:void(0)" onclick="openNav()">&#9776;</div>
-          <div id="sidenavclose" class="sidenavbutton closebtn" href="javascript:void(0)" onclick="closeNav()">&times;</div>
+          <!-- <div id="sidenavopen" class="sidenavbutton" href="javascript:void(0)" onclick="openNav()">&#9776;</div> -->
+          <!-- <div id="sidenavclose" class="sidenavbutton closebtn" href="javascript:void(0)" onclick="closeNav()">&times;</div> -->
         <!-- Right Panel   -->
           <div class="sidenavright">
-            <p>Layers Table of Contents</p>
-            <div class="pollutionlabel">
-              <p>Water Releases</p>
-            </div>
-            <div id="layerswitch">
-              <label><input type="checkbox" checked=true value="geojsonLayer" > Toxic Release Inventory</label><br>
-              <label><input type="checkbox" checked=true value="dmrGeojsonLayer" > Discharge Monitoring Report</label>
+            <div class="together">
+              <div class="toc">
+                <div>
+                <h2>Layers Table of Contents</h2>
+                  <p>Water Releases</p>
+                  <form id='layername'>
+                  <label><input type="checkbox" checked=true value="geojsonLayer" > Toxic Release Inventory</label><br>
+                  <label><input type="checkbox" value="test" > Discharge Monitoring Report</label>
+                  </form> 
+              </div>   
               </div>
-          </div> 
+
+            <div class='filter'>
+              <div id="sidenav" class="sidenav" style="color: rgb(250, 250, 250);">
+                <div id="filterblock">
+                  <h2>Pollution Data Attribute Filter</h2>
+                <input id="filter" type="text" placeholder="Search..."/>
+                  <ul class="level1">
+                    <li class="listtitle expander">Industry<span class="ui-icon ui-icon-plus" style="display:inline-block"></span></li>
+                      <ul class="level2 condense" class="searchable">
+                        <li><input type="checkbox" class="event-type" name="select-all" onClick="toggle(this)" >Select All (On/Off)</input></li>
+                        <li><input type="checkbox" class="event-type" name="plastics-and-rubber" value="Plastics and Rubber" checked="true">Plastics and Rubber</input></li>
+                        <li><input type="checkbox" class="event-type" name="furniture" value="Furniture"  checked="true">Furniture</input></li>
+                        <li><input type="checkbox" class="event-type" name="fabricated-metals" value="Fabricated Metals" checked="true">Fabricated Metals</input></li>
+                        <li><input type="checkbox" class="event-type" name="electric-utilities" value="Electric Utilities"  checked="true">Electric Utilities</input></li>
+                        <li><input type="checkbox" class="event-type" name="nonmetallic-mineral-product" value="Nonmetallic Mineral Product" checked="true">Nonmetallic Mineral Product</input></li>
+                        <li><input type="checkbox" class="event-type" name="textiles" value="Textiles" checked="true">Textiles</input></li>
+                        <li><input type="checkbox" class="event-type" name="metal-mining" value="Metal Mining" checked="true">Metal Mining</input></li>
+                        <li><input type="checkbox" class="event-type" name="tobacco" value="Tobacco" checked="true">Tobacco</input></li>
+                        <li><input type="checkbox" class="event-type" name="machinery" value="Machinery" checked="true">Machinery</input></li>
+                        <li><input type="checkbox" class="event-type" name="leather" value="Leather" checked="true">Leather</input></li>
+                        <li><input type="checkbox" class="event-type" name="paper" value="Paper" checked="true">Paper</input></li>
+                        <li><input type="checkbox" class="event-type" name="publishing" value="Publishing" checked="true">Publishing</input></li>
+                        <li><input type="checkbox" class="event-type" name="printing" value="Printing" checked="true">Printing</input></li>
+                        <li><input type="checkbox" class="event-type" name="electrical-equipment" value="Electrical Equipment" checked="true">Electrical Equipment</input></li>
+                        <li><input type="checkbox" class="event-type" name="chemicals" value="Chemicals" checked="true">Chemicals</input></li>
+                        <li><input type="checkbox" class="event-type" name="petroleum-bulk-terminals" value="Petroleum Bulk Terminals" checked="true">Petroleum Bulk Terminals</input></li>
+                        <li><input type="checkbox" class="event-type" name="beverages" value="Beverages" checked="true">Beverages</input></li>
+                        <li><input type="checkbox" class="event-type" name="hazardous-waste" value="Hazardous Waste" checked="true">Hazardous Waste</input></li>
+                        <li><input type="checkbox" class="event-type" name="wood-products" value="Wood Products" checked="true">Wood Products</input></li>
+                        <li><input type="checkbox" class="event-type" name="textile-product" value="Textile Product" checked="true">Textile Product</input></li>
+                        <li><input type="checkbox" class="event-type" name="petroleum" value="Petroleum" checked="true">Petroluem</input></li>
+                        <li><input type="checkbox" class="event-type" name="computers-and-electronic-products" value="Computers and Electronic Products" checked="true">Computers and Electronic Products</input></li>
+                        <li><input type="checkbox" class="event-type" name="apparel" value="Apparel" checked="true">Apparel</input></li>
+                        <li><input type="checkbox" class="event-type" name="food" value="Food" checked="true">Food</input></li>
+                        <li><input type="checkbox" class="event-type" name="chemical-wholesalers" value="Chemical Wholesalers" checked="true">Chemical Wholesalers</input></li>
+                        <li><input type="checkbox" class="event-type" name="transportation-equipment" value="Transportation Equipment" checked="true">Transportation Equipment</input></li>
+                        <li><input type="checkbox" class="event-type" name="primary-metals" value="Primary Metals" checked="true">Primary Metals</input></input>
+                        <li><input type="checkbox" class="event-type" name="miscellaneous-manufacturing" value="Miscellaneous Manufacturing" checked="true">Miscellaneous Manufacturing</input></li>
+                        <li><input type="checkbox" class="event-type" name="other" value="Other" checked="true">Other</input></li>
+                      </ul>
+              </div>           
+            </div>
+            </div>
+          </div>
+            <div class="main" class="inputs" id="years">
+              <div id="chart_div"></div>
+                <input type="range" class="year" min="1987" max="2020" value=2018 id="slider">
+                <div id="selector">
+                  <div class="SelectBtn"></div>
+                  <div id="SelectValue"></div>
+                </div>
+          </div>
+          
+          </div>
         <!-- Toggle function    -->
         <script>
           function toggle(source) {
@@ -121,67 +177,7 @@
             }
           }
         </script>
-          
-        <!-- Left Panel -->
-          <div id="sidenav" class="sidenav" style="color: rgb(250, 250, 250);">
-            <div id="filterblock">
-              <p>Pollution Data Attribute Filter</p>
-            <input id="filter" type="text" placeholder="Search..."/>
-              <ul class="level1">
-                <li class="listtitle expander">Industry (TRI only)<span class="ui-icon ui-icon-plus" style="display:inline-block"></span></li>
-                  <ul class="level2 condense" class="searchable">
-                    <li><input type="checkbox" class="event-type" name="select-all" onClick="toggle(this)" >Select All (On/Off)</input></li>
-                    <li><input type="checkbox" class="event-type" name="plastics-and-rubber" value="Plastics and Rubber" checked="true">Plastics and Rubber</input></li>
-                    <li><input type="checkbox" class="event-type" name="furniture" value="Furniture"  checked="true">Furniture</input></li>
-                    <li><input type="checkbox" class="event-type" name="fabricated-metals" value="Fabricated Metals" checked="true">Fabricated Metals</input></li>
-                    <li><input type="checkbox" class="event-type" name="electric-utilities" value="Electric Utilities"  checked="true">Electric Utilities</input></li>
-                    <li><input type="checkbox" class="event-type" name="nonmetallic-mineral-product" value="Nonmetallic Mineral Product" checked="true">Nonmetallic Mineral Product</input></li>
-                    <li><input type="checkbox" class="event-type" name="textiles" value="Textiles" checked="true">Textiles</input></li>
-                    <li><input type="checkbox" class="event-type" name="metal-mining" value="Metal Mining" checked="true">Metal Mining</input></li>
-                    <li><input type="checkbox" class="event-type" name="tobacco" value="Tobacco" checked="true">Tobacco</input></li>
-                    <li><input type="checkbox" class="event-type" name="machinery" value="Machinery" checked="true">Machinery</input></li>
-                    <li><input type="checkbox" class="event-type" name="leather" value="Leather" checked="true">Leather</input></li>
-                    <li><input type="checkbox" class="event-type" name="paper" value="Paper" checked="true">Paper</input></li>
-                    <li><input type="checkbox" class="event-type" name="publishing" value="Publishing" checked="true">Publishing</input></li>
-                    <li><input type="checkbox" class="event-type" name="printing" value="Printing" checked="true">Printing</input></li>
-                    <li><input type="checkbox" class="event-type" name="electrical-equipment" value="Electrical Equipment" checked="true">Electrical Equipment</input></li>
-                    <li><input type="checkbox" class="event-type" name="chemicals" value="Chemicals" checked="true">Chemicals</input></li>
-                    <li><input type="checkbox" class="event-type" name="petroleum-bulk-terminals" value="Petroleum Bulk Terminals" checked="true">Petroleum Bulk Terminals</input></li>
-                    <li><input type="checkbox" class="event-type" name="beverages" value="Beverages" checked="true">Beverages</input></li>
-                    <li><input type="checkbox" class="event-type" name="hazardous-waste" value="Hazardous Waste" checked="true">Hazardous Waste</input></li>
-                    <li><input type="checkbox" class="event-type" name="wood-products" value="Wood Products" checked="true">Wood Products</input></li>
-                    <li><input type="checkbox" class="event-type" name="textile-product" value="Textile Product" checked="true">Textile Product</input></li>
-                    <li><input type="checkbox" class="event-type" name="petroleum" value="Petroleum" checked="true">Petroluem</input></li>
-                    <li><input type="checkbox" class="event-type" name="computers-and-electronic-products" value="Computers and Electronic Products" checked="true">Computers and Electronic Products</input></li>
-                    <li><input type="checkbox" class="event-type" name="apparel" value="Apparel" checked="true">Apparel</input></li>
-                    <li><input type="checkbox" class="event-type" name="food" value="Food" checked="true">Food</input></li>
-                    <li><input type="checkbox" class="event-type" name="chemical-wholesalers" value="Chemical Wholesalers" checked="true">Chemical Wholesalers</input></li>
-                    <li><input type="checkbox" class="event-type" name="transportation-equipment" value="Transportation Equipment" checked="true">Transportation Equipment</input></li>
-                    <li><input type="checkbox" class="event-type" name="primary-metals" value="Primary Metals" checked="true">Primary Metals</input></input>
-                    <li><input type="checkbox" class="event-type" name="miscellaneous-manufacturing" value="Miscellaneous Manufacturing" checked="true">Miscellaneous Manufacturing</input></li>
-                    <li><input type="checkbox" class="event-type" name="other" value="Other" checked="true">Other</input></li>
-                  </ul>
-                <li class="listtitle expander">Chemical<span class="ui-icon ui-icon-plus" style="display:inline-block"></span></li>
-                    <ul class="level2 condense" class="searchable">
-                      <li><input type="checkbox" class="event-type" name="oxygen" value="Oxygen" checked="true">Oxygen</input></li>
-                      <li><input type="checkbox" class="event-type" name="helium" value="Helium" checked="true">Helium</input></li>
-                  </ul>
-              </ul>
-            </div>
-              <div class="main" class="inputs" id="years">
-                <div id="chart_div"></div>
-                  <input type="range" class="year" min="1987" max="2020" value=2018 id="slider">
-                  <div id="selector">
-                    <div class="SelectBtn"></div>
-                    <div id="SelectValue"></div>
-                  </div>
-            </div>
-        </div>
-  
-              </script>
-              
-  
-          
+                  
               <script>
   
                 var slider = document.getElementById("slider");
@@ -215,7 +211,7 @@
                   };
           
                 var myMap = L.map('map', {
-                  center: [35.01907305286242, -118.61962890625001],
+                  center: [37.01907305286242, -118.61962890625001],
                   zoom: 4,
                   minZoom: 6,
                   maxZoom: 17,
@@ -445,13 +441,28 @@
                   // Listen to 'change' event of all inputs
                   for (let input of document.querySelectorAll('input')) {
                     input.onchange = (e) => {
-                      geojsonLayer.clearLayers()
+                      // geojsonLayer.clearLayers()
                       trimarkers.clearLayers();
+                      //trimarkers.addData(json)
                       updateCheckboxStates();
                       geojsonLayer.addData(json);
+                      // trimarkers.addLayer(trimarker);
                       console.log(checkboxStates.years);
                       drawChart();  
                       myMap.addLayer(trimarkers)
+                    }
+                  }
+
+                  for (let input of document.getElementById("layername").elements) {
+                    input.onchange = (e) => {
+                      if (input.checked) {
+                        trimarkers.clearLayers();
+                        updateCheckboxStates();
+                        geojsonLayer.addData(json);
+                        myMap.addLayer(trimarkers);
+                      } else {
+                        trimarkers.clearLayers();
+                      }
                     }
                   }
                 });
