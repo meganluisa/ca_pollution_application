@@ -532,7 +532,7 @@
   
   <script type="text/javascript">
     // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
+      google.charts.load('current', {'packages':['corechart', 'bar']});
   
       // Set a callback to run when the Google Visualization API is loaded.
       google.charts.setOnLoadCallback(drawChart);
@@ -544,32 +544,61 @@
           //async: false,
           success: function (jsonData){
             console.log(jsonData);
-            var data = new google.visualization.DataTable();
-  
+            var x = new Array();
+            var y = new Array(); 
+            for (var i=0; i < jsonData.features.length; i++) {
+              if (x.includes(jsonData.features[i].properties["industry"]) === !true) {
+                x.push(jsonData.features[i].properties["industry"]);
+              }
+            }
+            for (var i=0; i < x.length; i++) {
+              y.push(0);
+            }
+            for (var i=0; i < x.length; i++) {
+              for (var j=0; j < jsonData.features.length; j++) {
+                if (jsonData.features[j].properties["industry"] === x[i] && jsonData.features[j].properties["year"].substr(0,4) === checkboxStates.years[0]) {
+                  y[i] += parseFloat(jsonData.features[i].properties["release"])
+                }
+              }
+            }
+          
+            console.log(x);
+            console.log(y);
+            var data = new google.visualization.DataTable();  
             data.addColumn('string', 'industry');
             data.addColumn('number', 'release');
             console.log(jsonData.features.length);
             console.log(checkboxStates.years[0]);
-            for (var i=0; i < jsonData.features.length; i++) {
-              if (jsonData.features[i].properties["year"].substr(0,4) === checkboxStates.years[0]) {
-                var industry = jsonData.features[i].properties["industry"];
-                var release = parseFloat(jsonData.features[i].properties["release"]);
-                console.log(typeof release);
-                data.addRow([industry, release]);
-              }
+            for (var i=0; i < x.length; i++) {
+              if (y[i] > 0 ) {
+                data.addRow([x[i], y[i]]);
+              } 
             }
+            console.log(data);
           
             var options = {
-                title: 'TRI Release Histogram for ' + checkboxStates.years[0],
-                histogram: {lastBucketPercentile: 15},
-                vAxis: { scaleType: 'null', title: 'Facility Count', titleTextStyle: {fontSize: 14, bold: true, italic: false} },
-                colors: ['mediumpurple'],
-                hAxis: { title: 'Release in lbs.', titleTextStyle: {fontSize: 14, bold: true, italic: false}}, 
-                legend: {position: 'none',},
-                series: {labelInLegend: true, visibleInLegend: true,},
+              title: 'TRI Releases '+ checkboxStates.years[0],
+              height: 300,
+              chartArea: {width: '50%', height: '70%'},
+              legend: { position: 'none' },
+              bars: 'horizontal', // Required for Material Bar Charts.
+              hAxis: { 
+                title: 'Lbs.', 
+                minValue: 0, 
+                scaleType: 'log', 
+                textStyle: { fontSize: 9 },           
+                  },
+              vAxis: {
+                title: 'Industry', 
+                textStyle: { fontSize: 8 },
+                },
+              bar: { groupWidth: "90%" },
+              colors: ['mediumpurple'],
+
+                          
               };
-  
-              var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
+              console.log(data);
+              var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
               chart.draw(data, options);
             }
         });
