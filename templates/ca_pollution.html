@@ -557,7 +557,7 @@
             for (var i=0; i < x.length; i++) {
               for (var j=0; j < jsonData.features.length; j++) {
                 if (jsonData.features[j].properties["industry"] === x[i] && jsonData.features[j].properties["year"].substr(0,4) === checkboxStates.years[0]) {
-                  y[i] += parseFloat(jsonData.features[i].properties["release"])
+                  y[i] += parseFloat(jsonData.features[j].properties["release"])
                 }
               }
             }
