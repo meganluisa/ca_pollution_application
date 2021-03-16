@@ -109,8 +109,8 @@
                 <h2>Layers Table of Contents</h2>
                   <p>Water Releases</p>
                   <form id='layername'>
-                  <label><input type="checkbox" checked=true value="geojsonLayer" > Toxic Release Inventory</label><br>
-                  <label><input type="checkbox" value="test" > Discharge Monitoring Report</label>
+                  <label><input type="checkbox" checked=true value="trimarkers" > Toxic Release Inventory</label><br>
+                  <label><input type="checkbox" checked=true value="dmrGeojsonLayer"> Discharge Monitoring Report</label>
                   </form> 
               </div>   
               </div>
@@ -331,6 +331,7 @@
                       trimarkers.addLayer(trimarker);
                 }
               },
+              
                 // pointToLayer: function (feature, latlng) {
                 //   var geojsonMarkerOptions = {
                 //   radius: getSize(Big(feature.properties.release).toPrecision(5)),
@@ -343,6 +344,7 @@
                 //   return L.circleMarker(latlng, geojsonMarkerOptions);
                 // }
               });
+              myMap.addLayer(trimarkers);
 
                 // DMR data
                 var dmrGeojsonLayer = L.geoJson(null, {
@@ -436,12 +438,10 @@
                 $.getJSON("static/tri_data.json", function(json) {
                 // Update geojson layer with data
                   console.log(json);
-                  geojsonLayer.addData(json); 
-          
+                  geojsonLayer.addData(json);          
                   // Listen to 'change' event of all inputs
                   for (let input of document.querySelectorAll('input')) {
                     input.onchange = (e) => {
-                      // geojsonLayer.clearLayers()
                       trimarkers.clearLayers();
                       //trimarkers.addData(json)
                       updateCheckboxStates();
@@ -449,25 +449,29 @@
                       // trimarkers.addLayer(trimarker);
                       console.log(checkboxStates.years);
                       drawChart();  
-                      myMap.addLayer(trimarkers)
+                      myMap.addLayer(trimarkers);
                     }
                   }
 
-                  for (let input of document.getElementById("layername").elements) {
-                    input.onchange = (e) => {
-                      if (input.checked) {
-                        trimarkers.clearLayers();
-                        updateCheckboxStates();
-                        geojsonLayer.addData(json);
-                        myMap.addLayer(trimarkers);
-                      } else {
-                        trimarkers.clearLayers();
-                      }
-                    }
-                  }
+                  for (let x of document.getElementById("layername").elements) {
+                    if (x.value === "trimarkers") {
+                      x.onchange = (e) => {
+                        console.log(x.value);
+                        if (x.checked) {
+                          console.log("tri changed");
+                          trimarkers.clearLayers();
+                          updateCheckboxStates();
+                          geojsonLayer.addData(json);
+                          myMap.addLayer(trimarkers);
+                        } else {
+                          trimarkers.clearLayers();
+                          }
+                      }   
+                    }    
+                  }                        
                 });
 
-                $.getJSON("static/dmr_data.json", function(json) {
+               $.getJSON("static/dmr_data.json", function(json) {
                 // Update geojson layer with data
                   console.log(json);
                   dmrGeojsonLayer.addData(json); 
@@ -484,44 +488,46 @@
                       SelectValue.innerHTML = checkboxStates.years;
                       selector.style.left = checkboxStates.year;  
                     }
+                  
+                  for (let x of document.getElementById("layername").elements) {
+                  // var dmrname = document.getElementById("layername");
+                    if (x.value === "dmrGeojsonLayer") {  
+                      x.oninput = (e) => {   
+                        console.log("dmr changed");               
+                        if (x.checked) {
+                          // dmrGeojsonLayer.clearLayers();
+                          dmrGeojsonLayer.addData(json);
+                          myMap.addLayer(dmrGeojsonLayer);
+                        } else {
+                          dmrGeojsonLayer.clearLayers();
+                        }                      
+                       }
+                      }
                   }
-                );
-
-              // Use jQuery to listen for Table of Contents event changes to add/remove layers
-              $( '#layerswitch input[type=checkbox]' ).click(function( event ) {
-                  layerClicked = window[event.target.value];
-                  console.log(layerClicked);
-                  if (myMap.hasLayer(layerClicked)) {
-                    console.log(layerClicked);
-                    myMap.removeLayer(layerClicked);
-                  }
-                  else{
-                    console.log("added!");
-                    myMap.addLayer(layerClicked);
-                  };
-                });
+                  });
+                
   
   
               // Legend Control
               
-              var legend = new L.Control({position: 'bottomright'});
-              legend.onAdd = function (map) {
+              // var legend = new L.Control({position: 'bottomright'});
+              // legend.onAdd = function (map) {
               
-                var div = L.DomUtil.create('div', 'info legend'),
-                    grades = [0, 200, 400, 800, 1000],
-                    labels = [];
+              //   var div = L.DomUtil.create('div', 'info legend'),
+              //       grades = [0, 200, 400, 800, 1000],
+              //       labels = [];
               
-                for (var i = 0; i < grades.length; i++) {
-                  div.innerHTML +=
-                  '<i class="fas fa-circle fa-' + getPixel(grades[i] + 1) +'x" style="color: rgb(32, 32, 124);"></i> ' +
-                  grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + " lbs"+ '<br>' + '<br>' + '<br>' : '+');
-                }
-                return div;
-                }
-                legend.addTo(myMap);
+              //   for (var i = 0; i < grades.length; i++) {
+              //     div.innerHTML +=
+              //     '<i class="fas fa-circle fa-' + getPixel(grades[i] + 1) +'x" style="color: rgb(32, 32, 124);"></i> ' +
+              //     grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + " lbs"+ '<br>' + '<br>' + '<br>' : '+');
+              //   }
+              //   return div;
+              //   }
+              //   legend.addTo(myMap);
   
 
-            myMap.addLayer(trimarkers);
+            
 
   
             L.control.scale({imperial: true, metric: false, position: "topleft"}).addTo(myMap);
@@ -562,19 +568,17 @@
               }
             }
           
-            console.log(x);
-            console.log(y);
             var data = new google.visualization.DataTable();  
             data.addColumn('string', 'industry');
             data.addColumn('number', 'release');
-            console.log(jsonData.features.length);
-            console.log(checkboxStates.years[0]);
+            // console.log(jsonData.features.length);
+            // console.log(checkboxStates.years[0]);
             for (var i=0; i < x.length; i++) {
               if (y[i] > 0 ) {
                 data.addRow([x[i], y[i]]);
               } 
             }
-            console.log(data);
+            // console.log(data);
           
             var options = {
               title: 'TRI Releases '+ checkboxStates.years[0],
