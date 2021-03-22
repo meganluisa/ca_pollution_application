@@ -9,4 +9,4 @@ ca_pollution/__pycache__/
 templates/COPY_ca_pollution.html
 .env
 staticfiles
-tmp/heroku_rsa
+ca_pollution/heroku_rsa
